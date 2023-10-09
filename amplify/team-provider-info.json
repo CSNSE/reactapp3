@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "reactapp355b15f98": {}
+      },
+      "api": {
+        "reactapp3": {}
+      },
+      "storage": {
+        "imagestorage": {}
       }
     }
   }
