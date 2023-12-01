@@ -7,7 +7,8 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import { fetchByPath, getOverrideProps, validateField } from "./utils";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { fetchByPath, validateField } from "./utils";
 import { API } from "aws-amplify";
 import { getNote } from "../graphql/queries";
 import { updateNote } from "../graphql/mutations";
@@ -49,7 +50,7 @@ export default function NoteUpdateForm(props) {
       const record = idProp
         ? (
             await API.graphql({
-              query: getNote.replaceAll("__typename", ""),
+              query: getNote,
               variables: { id: idProp },
             })
           )?.data?.getNote
@@ -123,7 +124,7 @@ export default function NoteUpdateForm(props) {
             }
           });
           await API.graphql({
-            query: updateNote.replaceAll("__typename", ""),
+            query: updateNote,
             variables: {
               input: {
                 id: noteRecord.id,
