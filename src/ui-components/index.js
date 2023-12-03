@@ -4,6 +4,13 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as EditItem } from "./EditItem";
+export { default as FoodCardCollection } from "./FoodCardCollection";
+export { default as Header } from "./Header";
+export { default as Homepage } from "./Homepage";
+export { default as Info } from "./Info";
+export { default as ItemInfo } from "./ItemInfo";
 export { default as NoteCreateForm } from "./NoteCreateForm";
 export { default as NoteUpdateForm } from "./NoteUpdateForm";
+export { default as StandardCard } from "./StandardCard";
 export { default as studioTheme } from "./studioTheme";
