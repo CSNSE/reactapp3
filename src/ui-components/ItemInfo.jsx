@@ -6,12 +6,39 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { useState } from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
+import { API } from "aws-amplify";
+import { createNote } from "../graphql/mutations";
 import { Text, TextField, View } from "@aws-amplify/ui-react";
 export default function ItemInfo(props) {
   const { food, overrides, ...rest } = props;
+  const [
+    textFieldThreeEightFiveOneFourFiveFourEightValue,
+    setTextFieldThreeEightFiveOneFourFiveFourEightValue,
+  ] = useState("");
+  const [
+    textFieldThreeEightFiveOneFourFiveFiveFiveValue,
+    setTextFieldThreeEightFiveOneFourFiveFiveFiveValue,
+  ] = useState("");
+  const [
+    textFieldThreeEightFiveOneFourFiveSixTwoValue,
+    setTextFieldThreeEightFiveOneFourFiveSixTwoValue,
+  ] = useState("");
   const doneOnClick = useNavigateAction({ type: "url", url: "/" });
-  const submitOnClick = useNavigateAction({ type: "url", url: "/" });
+  const submitOnClick = async () => {
+    await API.graphql({
+      query: createNote.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldThreeEightFiveOneFourFiveFourEightValue,
+          description: textFieldThreeEightFiveOneFourFiveFiveFiveValue,
+          image: textFieldThreeEightFiveOneFourFiveSixTwoValue,
+        },
+      },
+    });
+  };
+  const submitOnMouseLeave = useNavigateAction({ type: "url", url: "/" });
   return (
     <View
       width="390px"
@@ -127,6 +154,9 @@ export default function ItemInfo(props) {
         onClick={() => {
           submitOnClick();
         }}
+        onMouseLeave={() => {
+          submitOnMouseLeave();
+        }}
         {...getOverrideProps(overrides, "Submit")}
       ></Text>
       <TextField
@@ -141,6 +171,12 @@ export default function ItemInfo(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeEightFiveOneFourFiveFourEightValue}
+        onChange={(event) => {
+          setTextFieldThreeEightFiveOneFourFiveFourEightValue(
+            event.target.value
+          );
+        }}
         {...getOverrideProps(overrides, "TextField38514548")}
       ></TextField>
       <TextField
@@ -155,6 +191,12 @@ export default function ItemInfo(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeEightFiveOneFourFiveFiveFiveValue}
+        onChange={(event) => {
+          setTextFieldThreeEightFiveOneFourFiveFiveFiveValue(
+            event.target.value
+          );
+        }}
         {...getOverrideProps(overrides, "TextField38514555")}
       ></TextField>
       <TextField
@@ -169,6 +211,10 @@ export default function ItemInfo(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeEightFiveOneFourFiveSixTwoValue}
+        onChange={(event) => {
+          setTextFieldThreeEightFiveOneFourFiveSixTwoValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextField38514562")}
       ></TextField>
     </View>

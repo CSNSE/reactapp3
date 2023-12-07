@@ -77,8 +77,8 @@ export default function EditItem(props) {
         alignItems="unset"
         justifyContent="unset"
         position="absolute"
-        top="769px"
-        left="154px"
+        top="772px"
+        left="267px"
         borderRadius="30px"
         padding="0px 0px 0px 0px"
         backgroundColor="rgba(31,115,241,1)"
@@ -99,12 +99,49 @@ export default function EditItem(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="778px"
-        left="178px"
+        top="781px"
+        left="291px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Finish"
         {...getOverrideProps(overrides, "Finish")}
+      ></Text>
+      <View
+        width="81px"
+        height="34px"
+        display="block"
+        gap="unset"
+        alignItems="unset"
+        justifyContent="unset"
+        position="absolute"
+        top="773px"
+        left="39px"
+        borderRadius="30px"
+        padding="0px 0px 0px 0px"
+        backgroundColor="rgba(31,115,241,1)"
+        {...getOverrideProps(overrides, "Rectangle 14")}
+      ></View>
+      <Text
+        fontFamily="Istok Web"
+        fontSize="12px"
+        fontWeight="700"
+        color="rgba(0,0,0,1)"
+        lineHeight="17.2734375px"
+        textAlign="center"
+        display="block"
+        direction="column"
+        justifyContent="unset"
+        width="unset"
+        height="unset"
+        gap="unset"
+        alignItems="unset"
+        position="absolute"
+        top="782px"
+        left="61px"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children="Delete"
+        {...getOverrideProps(overrides, "Delete")}
       ></Text>
       <Flex
         gap="0"
@@ -245,7 +282,7 @@ export default function EditItem(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField38514653")}
+        {...getOverrideProps(overrides, "TextField3868307")}
       ></TextField>
       <TextField
         width="300px"
@@ -259,7 +296,7 @@ export default function EditItem(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField38514660")}
+        {...getOverrideProps(overrides, "TextField3868308")}
       ></TextField>
       <TextField
         width="300px"
@@ -273,7 +310,7 @@ export default function EditItem(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField38514667")}
+        {...getOverrideProps(overrides, "TextField3868309")}
       ></TextField>
     </View>
   );
