@@ -7,9 +7,9 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
-import { getOverrideProps, useNavigateAction } from "./utils";
 import { API } from "aws-amplify";
-import { createNote } from "../graphql/mutations";
+import { createNote, updateNote } from "../graphql/mutations";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Text, TextField, View } from "@aws-amplify/ui-react";
 export default function ItemInfo(props) {
   const { food, overrides, ...rest } = props;
@@ -25,7 +25,28 @@ export default function ItemInfo(props) {
     textFieldThreeEightFiveOneFourFiveSixTwoValue,
     setTextFieldThreeEightFiveOneFourFiveSixTwoValue,
   ] = useState("");
-  const doneOnClick = useNavigateAction({ type: "url", url: "/" });
+  const rectangleFourOnClick = async () => {
+    await API.graphql({
+      query: updateNote.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          id: food?.id,
+        },
+      },
+    });
+  };
+  const doneOnClick = async () => {
+    await API.graphql({
+      query: createNote.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldThreeEightFiveOneFourFiveFourEightValue,
+          description: textFieldThreeEightFiveOneFourFiveFiveFiveValue,
+          image: textFieldThreeEightFiveOneFourFiveSixTwoValue,
+        },
+      },
+    });
+  };
   const submitOnClick = async () => {
     await API.graphql({
       query: createNote.replaceAll("__typename", ""),
@@ -89,6 +110,9 @@ export default function ItemInfo(props) {
         borderRadius="30px"
         padding="0px 0px 0px 0px"
         backgroundColor="rgba(31,115,241,1)"
+        onClick={() => {
+          rectangleFourOnClick();
+        }}
         {...getOverrideProps(overrides, "Rectangle 4")}
       ></View>
       <View

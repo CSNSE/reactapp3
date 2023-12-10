@@ -7,7 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { listNotes } from "../graphql/queries";
-import StandardCard from "./StandardCard";
+import FoodCard from "./FoodCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
@@ -93,11 +93,11 @@ export default function FoodCardCollection(props) {
             return <Placeholder key={index} size="large" />;
           }
           return (
-            <StandardCard
-              food={item}
+            <FoodCard
+              fc={item}
               key={item.id}
               {...(overrideItems && overrideItems({ item, index }))}
-            ></StandardCard>
+            ></FoodCard>
           );
         }}
       </Collection>

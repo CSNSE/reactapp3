@@ -12,6 +12,10 @@ export default function Header(props) {
   const { overrides, ...rest } = props;
   const rectangleFourOnClick = useNavigateAction({ type: "url", url: "/info" });
   const rectangleThreeOnClick = useNavigateAction({ type: "url", url: "/new" });
+  const shopperPlannerThreeEightFiveSixTwoZeroSevenOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
   return (
     <View
       width="390px"
@@ -105,6 +109,9 @@ export default function Header(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
+        onClick={() => {
+          shopperPlannerThreeEightFiveSixTwoZeroSevenOnClick();
+        }}
         {...getOverrideProps(overrides, "Shopper Planner3856207")}
       ></Text>
       <Text

@@ -6,10 +6,43 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { useState } from "react";
+import { API } from "aws-amplify";
+import { updateNote } from "../graphql/mutations";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Image, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function EditItem(props) {
-  const { overrides, ...rest } = props;
+  const { edt, overrides, ...rest } = props;
+  const [
+    textFieldThreeEightSixEightThreeZeroSevenValue,
+    setTextFieldThreeEightSixEightThreeZeroSevenValue,
+  ] = useState("");
+  const [
+    textFieldThreeEightSixEightThreeZeroNineValue,
+    setTextFieldThreeEightSixEightThreeZeroNineValue,
+  ] = useState("");
+  const [
+    textFieldThreeEightSixEightThreeZeroEightValue,
+    setTextFieldThreeEightSixEightThreeZeroEightValue,
+  ] = useState("");
+  const rectangleOneThreeOnClick = async () => {
+    await API.graphql({
+      query: updateNote.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldThreeEightSixEightThreeZeroSevenValue,
+          description: textFieldThreeEightSixEightThreeZeroNineValue,
+          image: textFieldThreeEightSixEightThreeZeroEightValue,
+          id: edt?.id,
+        },
+      },
+    });
+  };
+  const rectangleOneThreeOnMouseUp = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
+  const finishOnClick = useNavigateAction({ type: "url", url: "/" });
   return (
     <View
       width="390px"
@@ -82,6 +115,12 @@ export default function EditItem(props) {
         borderRadius="30px"
         padding="0px 0px 0px 0px"
         backgroundColor="rgba(31,115,241,1)"
+        onClick={() => {
+          rectangleOneThreeOnClick();
+        }}
+        onMouseUp={() => {
+          rectangleOneThreeOnMouseUp();
+        }}
         {...getOverrideProps(overrides, "Rectangle 13")}
       ></View>
       <Text
@@ -104,6 +143,9 @@ export default function EditItem(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Finish"
+        onClick={() => {
+          finishOnClick();
+        }}
         {...getOverrideProps(overrides, "Finish")}
       ></Text>
       <View
@@ -169,6 +211,7 @@ export default function EditItem(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           objectFit="cover"
+          src={edt?.image}
           {...getOverrideProps(overrides, "image")}
         ></Image>
         <Flex
@@ -261,7 +304,7 @@ export default function EditItem(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="example"
+              children={edt?.id}
               {...getOverrideProps(
                 overrides,
                 "832 34th Ave, Seattle, WA 98122"
@@ -277,11 +320,15 @@ export default function EditItem(props) {
         top="478px"
         left="44px"
         label="Label"
-        placeholder="Placeholder"
+        placeholder={edt?.name}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeEightSixEightThreeZeroSevenValue}
+        onChange={(event) => {
+          setTextFieldThreeEightSixEightThreeZeroSevenValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextField3868307")}
       ></TextField>
       <TextField
@@ -291,11 +338,15 @@ export default function EditItem(props) {
         top="664px"
         left="45px"
         label="Label"
-        placeholder="Placeholder"
+        placeholder={edt?.image}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeEightSixEightThreeZeroEightValue}
+        onChange={(event) => {
+          setTextFieldThreeEightSixEightThreeZeroEightValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextField3868308")}
       ></TextField>
       <TextField
@@ -305,11 +356,15 @@ export default function EditItem(props) {
         top="571px"
         left="44px"
         label="Label"
-        placeholder="Placeholder"
+        placeholder={edt?.description}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeEightSixEightThreeZeroNineValue}
+        onChange={(event) => {
+          setTextFieldThreeEightSixEightThreeZeroNineValue(event.target.value);
+        }}
         {...getOverrideProps(overrides, "TextField3868309")}
       ></TextField>
     </View>

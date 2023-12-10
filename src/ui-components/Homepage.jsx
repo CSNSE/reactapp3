@@ -37,7 +37,7 @@ export default function Homepage(props) {
         left="35px"
         padding="0px 0px 0px 0px"
         backgroundColor="rgba(255,255,255,1)"
-        {...getOverrideProps(overrides, "StandardCard38514400")}
+        {...getOverrideProps(overrides, "StandardCard3856233")}
       >
         <Image
           width="unset"
@@ -51,7 +51,7 @@ export default function Homepage(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          {...getOverrideProps(overrides, "image38514401")}
+          {...getOverrideProps(overrides, "image3856234")}
         ></Image>
         <Flex
           gap="16px"
@@ -64,7 +64,7 @@ export default function Homepage(props) {
           alignSelf="stretch"
           position="relative"
           padding="16px 16px 16px 16px"
-          {...getOverrideProps(overrides, "Card Area38514402")}
+          {...getOverrideProps(overrides, "Card Area3856235")}
         >
           <Flex
             gap="8px"
@@ -77,7 +77,7 @@ export default function Homepage(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Text Group38514403")}
+            {...getOverrideProps(overrides, "Text Group3856236")}
           >
             <Text
               fontFamily="Inter"
@@ -99,7 +99,7 @@ export default function Homepage(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Pasta"
-              {...getOverrideProps(overrides, "$99 USD38514404")}
+              {...getOverrideProps(overrides, "$99 USD3856237")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -124,7 +124,7 @@ export default function Homepage(props) {
               children="example"
               {...getOverrideProps(
                 overrides,
-                "4bds 3 ba 2,530 sqft - Active38514405"
+                "4bds 3 ba 2,530 sqft - Active3856238"
               )}
             ></Text>
             <Text
@@ -149,7 +149,7 @@ export default function Homepage(props) {
               children="example"
               {...getOverrideProps(
                 overrides,
-                "832 34th Ave, Seattle, WA 9812238514406"
+                "832 34th Ave, Seattle, WA 981223856239"
               )}
             ></Text>
           </Flex>
@@ -167,7 +167,7 @@ export default function Homepage(props) {
         left="35px"
         padding="0px 0px 0px 0px"
         backgroundColor="rgba(255,255,255,1)"
-        {...getOverrideProps(overrides, "StandardCard38514407")}
+        {...getOverrideProps(overrides, "StandardCard3856240")}
       >
         <Image
           width="unset"
@@ -181,7 +181,7 @@ export default function Homepage(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          {...getOverrideProps(overrides, "image38514408")}
+          {...getOverrideProps(overrides, "image3856241")}
         ></Image>
         <Flex
           gap="16px"
@@ -194,7 +194,7 @@ export default function Homepage(props) {
           alignSelf="stretch"
           position="relative"
           padding="16px 16px 16px 16px"
-          {...getOverrideProps(overrides, "Card Area38514409")}
+          {...getOverrideProps(overrides, "Card Area3856242")}
         >
           <Flex
             gap="8px"
@@ -207,7 +207,7 @@ export default function Homepage(props) {
             alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Text Group38514410")}
+            {...getOverrideProps(overrides, "Text Group3856243")}
           >
             <Text
               fontFamily="Inter"
@@ -229,7 +229,7 @@ export default function Homepage(props) {
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
               children="Milk"
-              {...getOverrideProps(overrides, "$99 USD38514411")}
+              {...getOverrideProps(overrides, "$99 USD3856244")}
             ></Text>
             <Text
               fontFamily="Inter"
@@ -254,7 +254,7 @@ export default function Homepage(props) {
               children="2% fat"
               {...getOverrideProps(
                 overrides,
-                "4bds 3 ba 2,530 sqft - Active38514412"
+                "4bds 3 ba 2,530 sqft - Active3856245"
               )}
             ></Text>
             <Text
@@ -279,7 +279,7 @@ export default function Homepage(props) {
               children="https..."
               {...getOverrideProps(
                 overrides,
-                "832 34th Ave, Seattle, WA 9812238514413"
+                "832 34th Ave, Seattle, WA 981223856246"
               )}
             ></Text>
           </Flex>
@@ -316,11 +316,11 @@ export default function Homepage(props) {
         alignItems="unset"
         position="absolute"
         top="774px"
-        left="272px"
+        left="266px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Info"
-        {...getOverrideProps(overrides, "Info")}
+        children="Finish"
+        {...getOverrideProps(overrides, "Finish")}
       ></Text>
       <View
         width="81px"
@@ -357,7 +357,7 @@ export default function Homepage(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
-        {...getOverrideProps(overrides, "Shopper Planner38514417")}
+        {...getOverrideProps(overrides, "Shopper Planner3856250")}
       ></Text>
       <Text
         fontFamily="Istok Web"
@@ -375,11 +375,11 @@ export default function Homepage(props) {
         alignItems="unset"
         position="absolute"
         top="774px"
-        left="81px"
+        left="97px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Begin list"
-        {...getOverrideProps(overrides, "Begin list")}
+        children="Add"
+        {...getOverrideProps(overrides, "Add")}
       ></Text>
       <Text
         fontFamily="Istok Web"
@@ -401,7 +401,7 @@ export default function Homepage(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
-        {...getOverrideProps(overrides, "Shopper Planner38514419")}
+        {...getOverrideProps(overrides, "Shopper Planner3856252")}
       ></Text>
     </View>
   );

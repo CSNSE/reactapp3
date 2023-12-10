@@ -37,6 +37,8 @@ export declare type EditItemOverridesProps = {
     TextField3868309?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EditItemProps = React.PropsWithChildren<Partial<ViewProps> & {
+    edt?: any;
+} & {
     overrides?: EditItemOverridesProps | undefined | null;
 }>;
 export default function EditItem(props: EditItemProps): React.ReactElement;

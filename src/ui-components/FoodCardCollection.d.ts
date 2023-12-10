@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { StandardCardProps } from "./StandardCard";
+import { FoodCardProps } from "./FoodCard";
 import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -20,14 +20,14 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type FoodCardCollectionOverridesProps = {
     FoodCardCollection?: PrimitiveOverrideProps<CollectionProps>;
-    StandardCard?: StandardCardProps;
+    FoodCard?: FoodCardProps;
 } & EscapeHatchProps;
 export declare type FoodCardCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
     items?: any[];
     overrideItems?: (collectionItem: {
         item: any;
         index: number;
-    }) => StandardCardProps;
+    }) => FoodCardProps;
 } & {
     overrides?: FoodCardCollectionOverridesProps | undefined | null;
 }>;
