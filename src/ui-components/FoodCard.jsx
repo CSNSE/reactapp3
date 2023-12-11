@@ -56,6 +56,7 @@ export default function FoodCard(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         objectFit="cover"
+        src={fc?.image}
         {...getOverrideProps(overrides, "image")}
       ></Image>
       <Flex
