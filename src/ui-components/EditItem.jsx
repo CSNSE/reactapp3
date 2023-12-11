@@ -259,7 +259,7 @@ export default function EditItem(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="Pasta"
+              children={edt?.name}
               {...getOverrideProps(overrides, "$99 USD")}
             ></Text>
             <Text

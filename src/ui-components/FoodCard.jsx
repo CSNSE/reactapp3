@@ -26,7 +26,7 @@ export default function FoodCard(props) {
       },
     });
   };
-  const buttonThreeNineZeroFiveFiveNineOnMouseUp = useNavigateAction({
+  const buttonThreeNineZeroFiveFiveNineOnMouseOut = useNavigateAction({
     type: "url",
     url: "/",
   });
@@ -177,8 +177,8 @@ export default function FoodCard(props) {
         onClick={() => {
           buttonThreeNineZeroFiveFiveNineOnClick();
         }}
-        onMouseUp={() => {
-          buttonThreeNineZeroFiveFiveNineOnMouseUp();
+        onMouseOut={() => {
+          buttonThreeNineZeroFiveFiveNineOnMouseOut();
         }}
         {...getOverrideProps(overrides, "Button390559")}
       ></Button>
