@@ -8,62 +8,43 @@
 import * as React from "react";
 import { useState } from "react";
 import { API } from "aws-amplify";
-import { createNote, updateNote } from "../graphql/mutations";
+import { createNote } from "../graphql/mutations";
 import { getOverrideProps, useNavigateAction } from "./utils";
-import { Text, TextField, View } from "@aws-amplify/ui-react";
+import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function ItemInfo(props) {
   const { food, overrides, ...rest } = props;
   const [
-    textFieldThreeEightFiveOneFourFiveFourEightValue,
-    setTextFieldThreeEightFiveOneFourFiveFourEightValue,
+    textFieldThreeNineThreeZeroTwoTwoFourValue,
+    setTextFieldThreeNineThreeZeroTwoTwoFourValue,
   ] = useState("");
   const [
-    textFieldThreeEightFiveOneFourFiveFiveFiveValue,
-    setTextFieldThreeEightFiveOneFourFiveFiveFiveValue,
+    textFieldThreeNineThreeZeroTwoTwoFiveValue,
+    setTextFieldThreeNineThreeZeroTwoTwoFiveValue,
   ] = useState("");
   const [
-    textFieldThreeEightFiveOneFourFiveSixTwoValue,
-    setTextFieldThreeEightFiveOneFourFiveSixTwoValue,
+    textFieldThreeNineThreeZeroTwoTwoSixValue,
+    setTextFieldThreeNineThreeZeroTwoTwoSixValue,
   ] = useState("");
-  const rectangleFourOnClick = async () => {
-    await API.graphql({
-      query: updateNote.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          id: food?.id,
-        },
-      },
-    });
-  };
-  const doneOnClick = async () => {
+  const buttonThreeNineThreeZeroOneEightThreeOnClick = async () => {
     await API.graphql({
       query: createNote.replaceAll("__typename", ""),
       variables: {
         input: {
-          name: textFieldThreeEightFiveOneFourFiveFourEightValue,
-          description: textFieldThreeEightFiveOneFourFiveFiveFiveValue,
-          image: textFieldThreeEightFiveOneFourFiveSixTwoValue,
+          name: textFieldThreeNineThreeZeroTwoTwoFourValue,
+          description: textFieldThreeNineThreeZeroTwoTwoFiveValue,
+          image: textFieldThreeNineThreeZeroTwoTwoSixValue,
         },
       },
     });
   };
-  const submitOnClick = async () => {
-    await API.graphql({
-      query: createNote.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          name: textFieldThreeEightFiveOneFourFiveFourEightValue,
-          description: textFieldThreeEightFiveOneFourFiveFiveFiveValue,
-          image: textFieldThreeEightFiveOneFourFiveSixTwoValue,
-        },
-      },
-    });
-  };
-  const submitOnMouseLeave = useNavigateAction({ type: "url", url: "/" });
+  const buttonThreeNineThreeZeroOneEightSevenOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
   return (
     <View
       width="390px"
-      height="844px"
+      height="728px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -97,150 +78,92 @@ export default function ItemInfo(props) {
         children="Item Info"
         {...getOverrideProps(overrides, "Item Info")}
       ></Text>
-      <View
-        width="81px"
-        height="34px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        position="absolute"
-        top="771px"
-        left="242px"
-        borderRadius="30px"
-        padding="0px 0px 0px 0px"
-        backgroundColor="rgba(31,115,241,1)"
-        onClick={() => {
-          rectangleFourOnClick();
-        }}
-        {...getOverrideProps(overrides, "Rectangle 4")}
-      ></View>
-      <View
-        width="81px"
-        height="34px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        position="absolute"
-        top="771px"
-        left="68px"
-        borderRadius="30px"
-        padding="0px 0px 0px 0px"
-        backgroundColor="rgba(31,115,241,1)"
-        {...getOverrideProps(overrides, "Rectangle 3")}
-      ></View>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="12px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        lineHeight="17.2734375px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="unset"
-        height="unset"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="780px"
-        left="93px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Done"
-        onClick={() => {
-          doneOnClick();
-        }}
-        {...getOverrideProps(overrides, "Done")}
-      ></Text>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="12px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        lineHeight="17.2734375px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="unset"
-        height="unset"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="780px"
-        left="263px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Submit"
-        onClick={() => {
-          submitOnClick();
-        }}
-        onMouseLeave={() => {
-          submitOnMouseLeave();
-        }}
-        {...getOverrideProps(overrides, "Submit")}
-      ></Text>
       <TextField
         width="300px"
         height="unset"
+        label="Item"
         position="absolute"
         top="197px"
         left="45px"
-        label="Label"
         placeholder="Placeholder"
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeEightFiveOneFourFiveFourEightValue}
+        value={textFieldThreeNineThreeZeroTwoTwoFourValue}
         onChange={(event) => {
-          setTextFieldThreeEightFiveOneFourFiveFourEightValue(
-            event.target.value
-          );
+          setTextFieldThreeNineThreeZeroTwoTwoFourValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField38514548")}
+        {...getOverrideProps(overrides, "TextField3930224")}
       ></TextField>
       <TextField
         width="300px"
         height="unset"
+        label="Description"
         position="absolute"
         top="319px"
         left="44px"
-        label="Label"
         placeholder="Placeholder"
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeEightFiveOneFourFiveFiveFiveValue}
+        value={textFieldThreeNineThreeZeroTwoTwoFiveValue}
         onChange={(event) => {
-          setTextFieldThreeEightFiveOneFourFiveFiveFiveValue(
-            event.target.value
-          );
+          setTextFieldThreeNineThreeZeroTwoTwoFiveValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField38514555")}
+        {...getOverrideProps(overrides, "TextField3930225")}
       ></TextField>
       <TextField
         width="300px"
         height="unset"
+        label="Image"
         position="absolute"
         top="441px"
         left="45px"
-        label="Label"
         placeholder="Placeholder"
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeEightFiveOneFourFiveSixTwoValue}
+        value={textFieldThreeNineThreeZeroTwoTwoSixValue}
         onChange={(event) => {
-          setTextFieldThreeEightFiveOneFourFiveSixTwoValue(event.target.value);
+          setTextFieldThreeNineThreeZeroTwoTwoSixValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField38514562")}
+        {...getOverrideProps(overrides, "TextField3930226")}
       ></TextField>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="632px"
+        left="43px"
+        backgroundColor="rgba(11,153,255,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="Add Item"
+        onClick={() => {
+          buttonThreeNineThreeZeroOneEightThreeOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button3930183")}
+      ></Button>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="632px"
+        left="263px"
+        backgroundColor="rgba(11,153,255,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="FInish"
+        onClick={() => {
+          buttonThreeNineThreeZeroOneEightSevenOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button3930187")}
+      ></Button>
     </View>
   );
 }
