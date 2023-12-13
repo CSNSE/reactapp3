@@ -10,39 +10,42 @@ import { useState } from "react";
 import { API } from "aws-amplify";
 import { updateNote } from "../graphql/mutations";
 import { getOverrideProps, useNavigateAction } from "./utils";
-import { Flex, Image, Text, TextField, View } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Image,
+  Text,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
 export default function EditItem(props) {
   const { edt, overrides, ...rest } = props;
   const [
-    textFieldThreeEightSixEightThreeZeroSevenValue,
-    setTextFieldThreeEightSixEightThreeZeroSevenValue,
+    textFieldThreeNineThreeZeroOneSixOneValue,
+    setTextFieldThreeNineThreeZeroOneSixOneValue,
   ] = useState("");
   const [
-    textFieldThreeEightSixEightThreeZeroNineValue,
-    setTextFieldThreeEightSixEightThreeZeroNineValue,
+    textFieldThreeNineThreeZeroOneSixThreeValue,
+    setTextFieldThreeNineThreeZeroOneSixThreeValue,
   ] = useState("");
   const [
-    textFieldThreeEightSixEightThreeZeroEightValue,
-    setTextFieldThreeEightSixEightThreeZeroEightValue,
+    textFieldThreeNineThreeZeroOneSixTwoValue,
+    setTextFieldThreeNineThreeZeroOneSixTwoValue,
   ] = useState("");
-  const rectangleOneThreeOnClick = async () => {
+  const buttonOnClick = async () => {
     await API.graphql({
       query: updateNote.replaceAll("__typename", ""),
       variables: {
         input: {
-          name: textFieldThreeEightSixEightThreeZeroSevenValue,
-          description: textFieldThreeEightSixEightThreeZeroNineValue,
-          image: textFieldThreeEightSixEightThreeZeroEightValue,
+          name: textFieldThreeNineThreeZeroOneSixOneValue,
+          description: textFieldThreeNineThreeZeroOneSixThreeValue,
+          image: textFieldThreeNineThreeZeroOneSixTwoValue,
           id: edt?.id,
         },
       },
     });
   };
-  const rectangleOneThreeOnMouseUp = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
-  const finishOnClick = useNavigateAction({ type: "url", url: "/" });
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
   return (
     <View
       width="390px"
@@ -101,89 +104,6 @@ export default function EditItem(props) {
         whiteSpace="pre-wrap"
         children="Edit Item"
         {...getOverrideProps(overrides, "Edit Item")}
-      ></Text>
-      <View
-        width="81px"
-        height="34px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        position="absolute"
-        top="772px"
-        left="267px"
-        borderRadius="30px"
-        padding="0px 0px 0px 0px"
-        backgroundColor="rgba(31,115,241,1)"
-        onClick={() => {
-          rectangleOneThreeOnClick();
-        }}
-        onMouseUp={() => {
-          rectangleOneThreeOnMouseUp();
-        }}
-        {...getOverrideProps(overrides, "Rectangle 13")}
-      ></View>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="12px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        lineHeight="17.2734375px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="unset"
-        height="unset"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="781px"
-        left="291px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Finish"
-        onClick={() => {
-          finishOnClick();
-        }}
-        {...getOverrideProps(overrides, "Finish")}
-      ></Text>
-      <View
-        width="81px"
-        height="34px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
-        position="absolute"
-        top="773px"
-        left="39px"
-        borderRadius="30px"
-        padding="0px 0px 0px 0px"
-        backgroundColor="rgba(31,115,241,1)"
-        {...getOverrideProps(overrides, "Rectangle 14")}
-      ></View>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="12px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        lineHeight="17.2734375px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="unset"
-        height="unset"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="782px"
-        left="61px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Delete"
-        {...getOverrideProps(overrides, "Delete")}
       ></Text>
       <Flex
         gap="0"
@@ -282,7 +202,7 @@ export default function EditItem(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children="example"
+              children={edt?.description}
               {...getOverrideProps(overrides, "4bds 3 ba 2,530 sqft - Active")}
             ></Text>
             <Text
@@ -304,7 +224,7 @@ export default function EditItem(props) {
               position="relative"
               padding="0px 0px 0px 0px"
               whiteSpace="pre-wrap"
-              children={edt?.id}
+              children={edt?.image}
               {...getOverrideProps(
                 overrides,
                 "832 34th Ave, Seattle, WA 98122"
@@ -316,57 +236,76 @@ export default function EditItem(props) {
       <TextField
         width="300px"
         height="unset"
+        label="Name"
         position="absolute"
         top="478px"
         left="44px"
-        label="Label"
         placeholder={edt?.name}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeEightSixEightThreeZeroSevenValue}
+        value={textFieldThreeNineThreeZeroOneSixOneValue}
         onChange={(event) => {
-          setTextFieldThreeEightSixEightThreeZeroSevenValue(event.target.value);
+          setTextFieldThreeNineThreeZeroOneSixOneValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField3868307")}
+        {...getOverrideProps(overrides, "TextField3930161")}
       ></TextField>
       <TextField
         width="300px"
         height="unset"
+        label="Image"
         position="absolute"
         top="664px"
         left="45px"
-        label="Label"
         placeholder={edt?.image}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeEightSixEightThreeZeroEightValue}
+        value={textFieldThreeNineThreeZeroOneSixTwoValue}
         onChange={(event) => {
-          setTextFieldThreeEightSixEightThreeZeroEightValue(event.target.value);
+          setTextFieldThreeNineThreeZeroOneSixTwoValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField3868308")}
+        {...getOverrideProps(overrides, "TextField3930162")}
       ></TextField>
       <TextField
         width="300px"
         height="unset"
+        label="Description"
         position="absolute"
         top="571px"
         left="44px"
-        label="Label"
         placeholder={edt?.description}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeEightSixEightThreeZeroNineValue}
+        value={textFieldThreeNineThreeZeroOneSixThreeValue}
         onChange={(event) => {
-          setTextFieldThreeEightSixEightThreeZeroNineValue(event.target.value);
+          setTextFieldThreeNineThreeZeroOneSixThreeValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField3868309")}
+        {...getOverrideProps(overrides, "TextField3930163")}
       ></TextField>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="774px"
+        left="150px"
+        backgroundColor="rgba(11,153,255,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="Finish"
+        onClick={() => {
+          buttonOnClick();
+        }}
+        onMouseUp={() => {
+          buttonOnMouseUp();
+        }}
+        {...getOverrideProps(overrides, "Button")}
+      ></Button>
     </View>
   );
 }

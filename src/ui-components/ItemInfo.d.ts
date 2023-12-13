@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -20,13 +20,11 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type ItemInfoOverridesProps = {
     ItemInfo?: PrimitiveOverrideProps<ViewProps>;
     "Item Info"?: PrimitiveOverrideProps<TextProps>;
-    "Rectangle 4"?: PrimitiveOverrideProps<ViewProps>;
-    "Rectangle 3"?: PrimitiveOverrideProps<ViewProps>;
-    Done?: PrimitiveOverrideProps<TextProps>;
-    Submit?: PrimitiveOverrideProps<TextProps>;
-    TextField38514548?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField38514555?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField38514562?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3930224?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3930225?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField3930226?: PrimitiveOverrideProps<TextFieldProps>;
+    Button3930183?: PrimitiveOverrideProps<ButtonProps>;
+    Button3930187?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type ItemInfoProps = React.PropsWithChildren<Partial<ViewProps> & {
     food?: any;

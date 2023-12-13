@@ -26,7 +26,7 @@ export default function FoodCard(props) {
       },
     });
   };
-  const buttonThreeNineZeroFiveFiveNineOnMouseOut = useNavigateAction({
+  const buttonThreeNineZeroFiveFiveNineOnMouseUp = useNavigateAction({
     type: "url",
     url: "/",
   });
@@ -149,7 +149,7 @@ export default function FoodCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={fc?.id}
+            children={fc?.updatedAt}
             {...getOverrideProps(overrides, "example390554")}
           ></Text>
         </Flex>
@@ -178,8 +178,8 @@ export default function FoodCard(props) {
         onClick={() => {
           buttonThreeNineZeroFiveFiveNineOnClick();
         }}
-        onMouseOut={() => {
-          buttonThreeNineZeroFiveFiveNineOnMouseOut();
+        onMouseUp={() => {
+          buttonThreeNineZeroFiveFiveNineOnMouseUp();
         }}
         {...getOverrideProps(overrides, "Button390559")}
       ></Button>
