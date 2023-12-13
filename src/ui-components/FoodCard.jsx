@@ -16,7 +16,11 @@ export default function FoodCard(props) {
     type: "url",
     url: `${"/edit"}${"/"}${fc?.id}`,
   });
-  const buttonThreeNineZeroFiveFiveNineOnClick = async () => {
+  const buttonThreeNineZeroFiveFiveNineOnMouseUp = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
+  const buttonThreeNineZeroFiveFiveNineOnMouseDown = async () => {
     await API.graphql({
       query: deleteNote.replaceAll("__typename", ""),
       variables: {
@@ -26,10 +30,6 @@ export default function FoodCard(props) {
       },
     });
   };
-  const buttonThreeNineZeroFiveFiveNineOnMouseUp = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
   return (
     <Flex
       gap="0"
@@ -175,11 +175,11 @@ export default function FoodCard(props) {
         isDisabled={false}
         variation="default"
         children="Delete"
-        onClick={() => {
-          buttonThreeNineZeroFiveFiveNineOnClick();
-        }}
         onMouseUp={() => {
           buttonThreeNineZeroFiveFiveNineOnMouseUp();
+        }}
+        onMouseDown={() => {
+          buttonThreeNineZeroFiveFiveNineOnMouseDown();
         }}
         {...getOverrideProps(overrides, "Button390559")}
       ></Button>
