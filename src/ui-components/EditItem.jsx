@@ -10,36 +10,29 @@ import { useState } from "react";
 import { API } from "aws-amplify";
 import { updateNote } from "../graphql/mutations";
 import { getOverrideProps, useNavigateAction } from "./utils";
-import {
-  Button,
-  Flex,
-  Image,
-  Text,
-  TextField,
-  View,
-} from "@aws-amplify/ui-react";
+import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function EditItem(props) {
   const { edt, overrides, ...rest } = props;
   const [
-    textFieldThreeNineThreeZeroOneSixOneValue,
-    setTextFieldThreeNineThreeZeroOneSixOneValue,
+    textFieldThreeNineFourFiveEightSevenValue,
+    setTextFieldThreeNineFourFiveEightSevenValue,
   ] = useState("");
   const [
-    textFieldThreeNineThreeZeroOneSixThreeValue,
-    setTextFieldThreeNineThreeZeroOneSixThreeValue,
+    textFieldThreeNineFourFiveEightNineValue,
+    setTextFieldThreeNineFourFiveEightNineValue,
   ] = useState("");
   const [
-    textFieldThreeNineThreeZeroOneSixTwoValue,
-    setTextFieldThreeNineThreeZeroOneSixTwoValue,
+    textFieldThreeNineFourFiveEightEightValue,
+    setTextFieldThreeNineFourFiveEightEightValue,
   ] = useState("");
-  const buttonOnClick = async () => {
+  const buttonOnMouseDown = async () => {
     await API.graphql({
       query: updateNote.replaceAll("__typename", ""),
       variables: {
         input: {
-          name: textFieldThreeNineThreeZeroOneSixOneValue,
-          description: textFieldThreeNineThreeZeroOneSixThreeValue,
-          image: textFieldThreeNineThreeZeroOneSixTwoValue,
+          name: textFieldThreeNineFourFiveEightSevenValue,
+          description: textFieldThreeNineFourFiveEightNineValue,
+          image: textFieldThreeNineFourFiveEightEightValue,
           id: edt?.id,
         },
       },
@@ -49,7 +42,7 @@ export default function EditItem(props) {
   return (
     <View
       width="390px"
-      height="844px"
+      height="520px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -61,28 +54,79 @@ export default function EditItem(props) {
       {...getOverrideProps(overrides, "EditItem")}
       {...rest}
     >
-      <Text
-        fontFamily="Istok Web"
-        fontSize="12px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        lineHeight="17.2734375px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="110px"
-        height="33px"
-        gap="unset"
-        alignItems="unset"
+      <TextField
+        width="300px"
+        height="unset"
+        label="Name"
         position="absolute"
-        top="75px"
-        left="8px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Shopper Planner"
-        {...getOverrideProps(overrides, "Shopper Planner")}
-      ></Text>
+        top="123px"
+        left="43px"
+        placeholder={edt?.name}
+        size="default"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        value={textFieldThreeNineFourFiveEightSevenValue}
+        onChange={(event) => {
+          setTextFieldThreeNineFourFiveEightSevenValue(event.target.value);
+        }}
+        {...getOverrideProps(overrides, "TextField394587")}
+      ></TextField>
+      <TextField
+        width="300px"
+        height="unset"
+        label="Image"
+        position="absolute"
+        top="309px"
+        left="44px"
+        placeholder={edt?.image}
+        size="default"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        value={textFieldThreeNineFourFiveEightEightValue}
+        onChange={(event) => {
+          setTextFieldThreeNineFourFiveEightEightValue(event.target.value);
+        }}
+        {...getOverrideProps(overrides, "TextField394588")}
+      ></TextField>
+      <TextField
+        width="300px"
+        height="unset"
+        label="Description"
+        position="absolute"
+        top="216px"
+        left="43px"
+        placeholder={edt?.description}
+        size="default"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        value={textFieldThreeNineFourFiveEightNineValue}
+        onChange={(event) => {
+          setTextFieldThreeNineFourFiveEightNineValue(event.target.value);
+        }}
+        {...getOverrideProps(overrides, "TextField394589")}
+      ></TextField>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="419px"
+        left="149px"
+        backgroundColor="rgba(11,153,255,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="Finish"
+        onMouseDown={() => {
+          buttonOnMouseDown();
+        }}
+        onMouseUp={() => {
+          buttonOnMouseUp();
+        }}
+        {...getOverrideProps(overrides, "Button")}
+      ></Button>
       <Text
         fontFamily="Istok Web"
         fontSize="36px"
@@ -98,214 +142,13 @@ export default function EditItem(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="123px"
-        left="0px"
+        top="31px"
+        left="-2px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Edit Item"
         {...getOverrideProps(overrides, "Edit Item")}
       ></Text>
-      <Flex
-        gap="0"
-        direction="column"
-        width="228px"
-        height="104px"
-        justifyContent="center"
-        alignItems="flex-start"
-        position="absolute"
-        top="272px"
-        left="80px"
-        padding="0px 0px 0px 0px"
-        backgroundColor="rgba(255,255,255,1)"
-        {...getOverrideProps(overrides, "StandardCard")}
-      >
-        <Image
-          width="unset"
-          height="160px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          objectFit="cover"
-          src={edt?.image}
-          {...getOverrideProps(overrides, "image")}
-        ></Image>
-        <Flex
-          gap="16px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          padding="16px 16px 16px 16px"
-          {...getOverrideProps(overrides, "Card Area")}
-        >
-          <Flex
-            gap="8px"
-            direction="column"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Text Group")}
-          >
-            <Text
-              fontFamily="Inter"
-              fontSize="16px"
-              fontWeight="700"
-              color="rgba(13,26,38,1)"
-              lineHeight="20px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children={edt?.name}
-              {...getOverrideProps(overrides, "$99 USD")}
-            ></Text>
-            <Text
-              fontFamily="Inter"
-              fontSize="16px"
-              fontWeight="400"
-              color="rgba(13,26,38,1)"
-              lineHeight="24px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              letterSpacing="0.01px"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children={edt?.description}
-              {...getOverrideProps(overrides, "4bds 3 ba 2,530 sqft - Active")}
-            ></Text>
-            <Text
-              fontFamily="Inter"
-              fontSize="14px"
-              fontWeight="400"
-              color="rgba(48,64,80,1)"
-              lineHeight="24px"
-              textAlign="left"
-              display="block"
-              direction="column"
-              justifyContent="unset"
-              width="unset"
-              height="unset"
-              gap="unset"
-              alignItems="unset"
-              shrink="0"
-              alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              whiteSpace="pre-wrap"
-              children={edt?.image}
-              {...getOverrideProps(
-                overrides,
-                "832 34th Ave, Seattle, WA 98122"
-              )}
-            ></Text>
-          </Flex>
-        </Flex>
-      </Flex>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Name"
-        position="absolute"
-        top="478px"
-        left="44px"
-        placeholder={edt?.name}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineThreeZeroOneSixOneValue}
-        onChange={(event) => {
-          setTextFieldThreeNineThreeZeroOneSixOneValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField3930161")}
-      ></TextField>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Image"
-        position="absolute"
-        top="664px"
-        left="45px"
-        placeholder={edt?.image}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineThreeZeroOneSixTwoValue}
-        onChange={(event) => {
-          setTextFieldThreeNineThreeZeroOneSixTwoValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField3930162")}
-      ></TextField>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Description"
-        position="absolute"
-        top="571px"
-        left="44px"
-        placeholder={edt?.description}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineThreeZeroOneSixThreeValue}
-        onChange={(event) => {
-          setTextFieldThreeNineThreeZeroOneSixThreeValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField3930163")}
-      ></TextField>
-      <Button
-        width="unset"
-        height="unset"
-        position="absolute"
-        top="774px"
-        left="150px"
-        backgroundColor="rgba(11,153,255,1)"
-        size="default"
-        isDisabled={false}
-        variation="default"
-        children="Finish"
-        onClick={() => {
-          buttonOnClick();
-        }}
-        onMouseUp={() => {
-          buttonOnMouseUp();
-        }}
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
     </View>
   );
 }

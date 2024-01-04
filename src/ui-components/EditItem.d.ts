@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, FlexProps, ImageProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -19,19 +19,11 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EditItemOverridesProps = {
     EditItem?: PrimitiveOverrideProps<ViewProps>;
-    "Shopper Planner"?: PrimitiveOverrideProps<TextProps>;
-    "Edit Item"?: PrimitiveOverrideProps<TextProps>;
-    StandardCard?: PrimitiveOverrideProps<FlexProps>;
-    image?: PrimitiveOverrideProps<ImageProps>;
-    "Card Area"?: PrimitiveOverrideProps<FlexProps>;
-    "Text Group"?: PrimitiveOverrideProps<FlexProps>;
-    "$99 USD"?: PrimitiveOverrideProps<TextProps>;
-    "4bds 3 ba 2,530 sqft - Active"?: PrimitiveOverrideProps<TextProps>;
-    "832 34th Ave, Seattle, WA 98122"?: PrimitiveOverrideProps<TextProps>;
-    TextField3930161?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField3930162?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField3930163?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField394587?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField394588?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField394589?: PrimitiveOverrideProps<TextFieldProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
+    "Edit Item"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type EditItemProps = React.PropsWithChildren<Partial<ViewProps> & {
     edt?: any;

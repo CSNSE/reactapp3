@@ -44,7 +44,7 @@ export default function ItemInfo(props) {
   return (
     <View
       width="390px"
-      height="728px"
+      height="713px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -71,12 +71,12 @@ export default function ItemInfo(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="50px"
-        left="-11px"
+        top="76px"
+        left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Item Info"
-        {...getOverrideProps(overrides, "Item Info")}
+        children="Create Item"
+        {...getOverrideProps(overrides, "Create Item")}
       ></Text>
       <TextField
         width="300px"
@@ -158,7 +158,7 @@ export default function ItemInfo(props) {
         size="default"
         isDisabled={false}
         variation="default"
-        children="FInish"
+        children="Finish"
         onClick={() => {
           buttonThreeNineThreeZeroOneEightSevenOnClick();
         }}

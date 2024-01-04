@@ -19,7 +19,7 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ItemInfoOverridesProps = {
     ItemInfo?: PrimitiveOverrideProps<ViewProps>;
-    "Item Info"?: PrimitiveOverrideProps<TextProps>;
+    "Create Item"?: PrimitiveOverrideProps<TextProps>;
     TextField3930224?: PrimitiveOverrideProps<TextFieldProps>;
     TextField3930225?: PrimitiveOverrideProps<TextFieldProps>;
     TextField3930226?: PrimitiveOverrideProps<TextFieldProps>;
