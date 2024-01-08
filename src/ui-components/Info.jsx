@@ -134,7 +134,10 @@ export default function Info(props) {
           overrides,
           "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."
         )}
+
+        
       ></Text>
+      
     </View>
   );
 }

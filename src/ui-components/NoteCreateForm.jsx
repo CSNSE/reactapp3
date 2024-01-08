@@ -7,7 +7,6 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
-import {useNavigateAction } from "./utils";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
 import {
   fetchByPath,
@@ -65,7 +64,6 @@ export default function NoteCreateForm(props) {
     if (customValidator) {
       validationResponse = await customValidator(value, validationResponse);
     }
-    
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
@@ -133,7 +131,6 @@ export default function NoteCreateForm(props) {
       }}
       {...getOverrideProps(overrides, "NoteCreateForm")}
       {...rest}
-      
     >
       <TextField
         label="Name"
@@ -226,7 +223,7 @@ export default function NoteCreateForm(props) {
             });
           }}
           processFile={processFile}
-          accessLevel={"private"}
+          accessLevel={"public"}
           acceptedFileTypes={[]}
           isResumable={false}
           showThumbnails={true}
@@ -238,6 +235,15 @@ export default function NoteCreateForm(props) {
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
+        <Button
+          children="Clear"
+          type="reset"
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          {...getOverrideProps(overrides, "ClearButton")}
+        ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}

@@ -8,8 +8,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { API } from "aws-amplify";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import { Field } from "@aws-amplify/ui-react/internal";
 import { createNote } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { getOverrideProps, useNavigateAction,  processFile  } from "./utils";
 import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function ItemInfo(props) {
   const { food, overrides, ...rest } = props;
@@ -96,6 +98,8 @@ export default function ItemInfo(props) {
         }}
         {...getOverrideProps(overrides, "TextField3930224")}
       ></TextField>
+
+
       <TextField
         width="300px"
         height="unset"
@@ -114,6 +118,29 @@ export default function ItemInfo(props) {
         }}
         {...getOverrideProps(overrides, "TextField3930225")}
       ></TextField>
+
+       <Field
+
+label={"Image"}
+isRequired={false}
+isReadOnly={false}
+>
+<StorageManager
+  onUploadSuccess={({ key }) => {
+    setImageName(
+      key
+    );
+  }}
+  processFile={processFile}
+  accessLevel={"public"}
+  acceptedFileTypes={[]}
+  isResumable={false}
+  showThumbnails={true}
+  maxFileCount={1}
+  {...getOverrideProps(overrides, "image")}
+></StorageManager>
+</Field>
+
       <TextField
         width="300px"
         height="unset"
