@@ -121,6 +121,7 @@ export default function ItemInfo(props) {
 
        <Field
 
+
 label={"Image"}
 isRequired={false}
 isReadOnly={false}
