@@ -5,16 +5,31 @@
  **************************************************************************/
 
 /* eslint-disable */
+/* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
+import { Auth } from "@aws-amplify/auth";
 import { API } from "aws-amplify";
-import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { Field } from "@aws-amplify/ui-react/internal";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { createNote } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction,  processFile  } from "./utils";
-import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
+import { getOverrideProps, useNavigateAction, processFile } from "./utils";
+import {
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  Image,
+  Text,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
 export default function ItemInfo(props) {
   const { food, overrides, ...rest } = props;
+  const [
+    imageName,
+    setImageName,
+  ] = useState("");
   const [
     textFieldThreeNineThreeZeroTwoTwoFourValue,
     setTextFieldThreeNineThreeZeroTwoTwoFourValue,
@@ -98,8 +113,6 @@ export default function ItemInfo(props) {
         }}
         {...getOverrideProps(overrides, "TextField3930224")}
       ></TextField>
-
-
       <TextField
         width="300px"
         height="unset"
@@ -118,9 +131,12 @@ export default function ItemInfo(props) {
         }}
         {...getOverrideProps(overrides, "TextField3930225")}
       ></TextField>
+     
+     <Field
 
-       <Field
-
+position="absolute"
+top="400px"
+left="43px"
 
 label={"Image"}
 isRequired={false}
@@ -140,26 +156,9 @@ isReadOnly={false}
   maxFileCount={1}
   {...getOverrideProps(overrides, "image")}
 ></StorageManager>
+
 </Field>
 
-      <TextField
-        width="300px"
-        height="unset"
-        label="Image"
-        position="absolute"
-        top="441px"
-        left="45px"
-        placeholder="Placeholder"
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineThreeZeroTwoTwoSixValue}
-        onChange={(event) => {
-          setTextFieldThreeNineThreeZeroTwoTwoSixValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField3930226")}
-      ></TextField>
       <Button
         width="unset"
         height="unset"

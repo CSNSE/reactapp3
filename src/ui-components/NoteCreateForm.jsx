@@ -223,7 +223,7 @@ export default function NoteCreateForm(props) {
             });
           }}
           processFile={processFile}
-          accessLevel={"public"}
+          accessLevel={"private"}
           acceptedFileTypes={[]}
           isResumable={false}
           showThumbnails={true}
@@ -235,15 +235,6 @@ export default function NoteCreateForm(props) {
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
-        <Button
-          children="Clear"
-          type="reset"
-          onClick={(event) => {
-            event.preventDefault();
-            resetStateValues();
-          }}
-          {...getOverrideProps(overrides, "ClearButton")}
-        ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}

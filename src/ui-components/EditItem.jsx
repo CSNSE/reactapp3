@@ -7,9 +7,11 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
+import { Field } from "@aws-amplify/ui-react/internal";
 import { API } from "aws-amplify";
 import { updateNote } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import { getOverrideProps, useNavigateAction, processFile } from "./utils";
 import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function EditItem(props) {
   const { edt, overrides, ...rest } = props;
@@ -72,24 +74,7 @@ export default function EditItem(props) {
         }}
         {...getOverrideProps(overrides, "TextField394587")}
       ></TextField>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Image"
-        position="absolute"
-        top="309px"
-        left="44px"
-        placeholder={edt?.image}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineFourFiveEightEightValue}
-        onChange={(event) => {
-          setTextFieldThreeNineFourFiveEightEightValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField394588")}
-      ></TextField>
+      
       <TextField
         width="300px"
         height="unset"
@@ -108,6 +93,29 @@ export default function EditItem(props) {
         }}
         {...getOverrideProps(overrides, "TextField394589")}
       ></TextField>
+       <Field
+position="absolute"
+top="300px"
+left="43px"
+label={"Image"}
+isRequired={false}
+isReadOnly={false}
+>
+<StorageManager
+  onUploadSuccess={({ key }) => {
+    setImageName(
+      key
+    );
+  }}
+  processFile={processFile}
+  accessLevel={"public"}
+  acceptedFileTypes={[]}
+  isResumable={false}
+  showThumbnails={true}
+  maxFileCount={1}
+  {...getOverrideProps(overrides, "image")}
+></StorageManager>
+</Field>
       <Button
         width="unset"
         height="unset"

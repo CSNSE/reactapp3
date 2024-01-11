@@ -9,8 +9,9 @@ import * as React from "react";
 import { listNotes } from "../graphql/queries";
 import FoodCard from "./FoodCard";
 import { getOverrideProps } from "./utils";
+import { Auth } from "@aws-amplify/auth";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
-import { API } from "aws-amplify";
+import { API,Storage } from "aws-amplify";
 const nextToken = {};
 const apiCache = {};
 export default function FoodCardCollection(props) {
@@ -60,6 +61,20 @@ export default function FoodCardCollection(props) {
       ).data.listNotes;
       newCache.push(...result.items);
       newNext = result.nextToken;
+      const notesFromAPI = result.items
+      const user = await Auth.currentAuthenticatedUser();
+       await Promise.all(
+        notesFromAPI.map(async (note) => {
+          if (note.image) {
+            const url = await Storage.get(note.image);
+            console.log(note.image + "  " + note.name);
+            //console.log(user.attributes.email + "  " + note.author);
+            note.image = url;
+            console.log(note.image);
+          }
+          return note;
+        })
+        );
     }
     const cacheSlice = isPaginated
       ? newCache.slice((page - 1) * pageSize, page * pageSize)
