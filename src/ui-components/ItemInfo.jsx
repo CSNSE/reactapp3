@@ -73,7 +73,7 @@ export default function ItemInfo(props) {
       {...getOverrideProps(overrides, "ItemInfo")}
       {...rest}
     >
-      
+
       <Text
         fontFamily="Istok Web"
         fontSize="36px"
