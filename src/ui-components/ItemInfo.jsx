@@ -5,7 +5,6 @@
  **************************************************************************/
 
 /* eslint-disable */
-/* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
 import { Auth } from "@aws-amplify/auth";
@@ -26,7 +25,7 @@ import {
 } from "@aws-amplify/ui-react";
 export default function ItemInfo(props) {
   const { food, overrides, ...rest } = props;
-  const [
+const [
     imageName,
     setImageName,
   ] = useState("");
@@ -132,12 +131,12 @@ export default function ItemInfo(props) {
         }}
         {...getOverrideProps(overrides, "TextField3930225")}
       ></TextField>
-     
+      
      <Field
-
-position="absolute"
-top="400px"
-left="43px"
+        
+        position="absolute"
+        top="400px"
+        left="43px"
 
 label={"Image"}
 isRequired={false}
@@ -156,7 +155,7 @@ isReadOnly={false}
   showThumbnails={true}
   maxFileCount={1}
   {...getOverrideProps(overrides, "image")}
-></StorageManager>
+      ></StorageManager>
 
 </Field>
 

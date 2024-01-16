@@ -61,7 +61,7 @@ export default function FoodCardCollection(props) {
       ).data.listNotes;
       newCache.push(...result.items);
       newNext = result.nextToken;
-      const notesFromAPI = result.items
+const notesFromAPI = result.items
       const user = await Auth.currentAuthenticatedUser();
        await Promise.all(
         notesFromAPI.map(async (note) => {
