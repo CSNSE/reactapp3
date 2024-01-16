@@ -48,7 +48,7 @@ const [
         input: {
           name: textFieldThreeNineThreeZeroTwoTwoFourValue,
           description: textFieldThreeNineThreeZeroTwoTwoFiveValue,
-          image: textFieldThreeNineThreeZeroTwoTwoSixValue,
+          image: imageName,
         },
       },
     });

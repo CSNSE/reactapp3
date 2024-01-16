@@ -16,6 +16,10 @@ import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function EditItem(props) {
   const { edt, overrides, ...rest } = props;
   const [
+    imageName,
+    setImageName,
+  ] = useState("");
+  const [
     textFieldThreeNineFourFiveEightSevenValue,
     setTextFieldThreeNineFourFiveEightSevenValue,
   ] = useState("");
@@ -34,7 +38,7 @@ export default function EditItem(props) {
         input: {
           name: textFieldThreeNineFourFiveEightSevenValue,
           description: textFieldThreeNineFourFiveEightNineValue,
-          image: textFieldThreeNineFourFiveEightEightValue,
+          image: imageName,
           id: edt?.id,
         },
       },
