@@ -48,7 +48,7 @@ export default function EditItem(props) {
   return (
     <View
       width="390px"
-      height="520px"
+      height="670px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -124,7 +124,7 @@ isReadOnly={false}
         width="unset"
         height="unset"
         position="absolute"
-        top="419px"
+        top="580px"
         left="149px"
         backgroundColor="rgba(11,153,255,1)"
         size="default"
