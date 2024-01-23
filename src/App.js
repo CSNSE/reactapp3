@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {WelcomePage, Header, FoodCardCollection, Info, ItemInfo, EditItem, NoteCreateForm} from "./ui-components";
+import {WelcomePage, Header, FoodCardCollection, Info, ItemInfo, EditItem, NoteCreateForm, ListCardCollection} from "./ui-components";
 import EditNote from './EditNote';
 import {Routes, Route} from 'react-router-dom'
 
@@ -12,7 +12,7 @@ class App extends Component {
   return (
     <div className="App"><header className="App-header">
 <Routes>
-<Route exact path='/' element={<div><Header/><FoodCardCollection/></div>} />
+<Route exact path='/' element={<div><Header/><ListCardCollection/></div>} />
 <Route exact path='/0' element={<div><WelcomePage/></div>} />
 <Route exact path='/new' element={<div><Header/><ItemInfo/></div>} />
 <Route exact path='/info' element={<div><Info/></div>} />

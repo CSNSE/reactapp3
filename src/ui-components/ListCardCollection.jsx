@@ -11,9 +11,57 @@ import ListCard from "./ListCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { API } from "aws-amplify";
+import FoodCardCollection from "./FoodCardCollection";
 const nextToken = {};
 const apiCache = {};
-export default function ListCardCollection(props) {
+//import { AmpligramCollection } from './ui-components';
+
+
+// function App() {
+//   return (
+//     <div>
+//       <ListCardCollection
+
+//         overrideItems={({item, index}) => ({
+       
+//           fc: <FoodCardCollection items={item.Fc} />,
+//           lst: 
+//           <div>
+//             <small><i>AWS Amplify Brand</i></small>
+//           </div>,
+//         })}
+//          />
+//     </div>
+//   );
+// }
+// export default function ListCardCollection(props) {
+//   function App() {
+//     return (
+//       <ListCardCollection
+//         overrideItems={({ item }) => ({
+//           //Populate the "comments" slot
+//           id: (
+//             <div>
+//               {/*Map each related comment into a div*/}
+//               {item.Notes.map((Note) => (
+//                 <div>{Note.content}</div>
+//               ))}
+//             </div>
+//           )
+//         })}
+//       />
+//     );
+//   }
+  //export default App;
+  import { AmpligramCollection, CommentViewCollection } from './ui-components';
+import ListCardCollection from "./ListCardCollection";
+
+
+
+    
+  
+
+export default App;
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasMorePages, setHasMorePages] = React.useState(true);
@@ -77,6 +125,11 @@ export default function ListCardCollection(props) {
     setMaxViewed(Math.max(maxViewed, pageIndex));
   }, [pageIndex, maxViewed, setMaxViewed]);
   return (
+    
+
+
+    
+
     <div>
       <Collection
         type="list"
@@ -113,4 +166,4 @@ export default function ListCardCollection(props) {
       )}
     </div>
   );
-}
+
