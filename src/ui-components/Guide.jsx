@@ -8,7 +8,7 @@
 import * as React from "react";
 import { getOverrideProps } from "./utils";
 import { Text, View } from "@aws-amplify/ui-react";
-export default function Info(props) {
+export default function Guide(props) {
   const { overrides, ...rest } = props;
   return (
     <View
@@ -22,7 +22,7 @@ export default function Info(props) {
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "Info")}
+      {...getOverrideProps(overrides, "Guide")}
       {...rest}
     >
       <Text
@@ -68,15 +68,14 @@ export default function Info(props) {
         left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Info"
-        {...getOverrideProps(overrides, "Info38514483")}
+        children="Guide"
+        {...getOverrideProps(overrides, "Guide39533754")}
       ></Text>
       <Text
         fontFamily="Istok Web"
         fontSize="36px"
         fontWeight="700"
         color="rgba(0,0,0,1)"
-        fontStyle="italic"
         lineHeight="51.8203125px"
         textAlign="center"
         display="block"
@@ -91,10 +90,10 @@ export default function Info(props) {
         left="10px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."
+        children="First make a new list, or edit an existing one. Here you can add all the recipes you’ll need for the event."
         {...getOverrideProps(
           overrides,
-          "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."
+          "First make a new list, or edit an existing one. Here you can add all the recipes you\u2019ll need for the event."
         )}
       ></Text>
     </View>

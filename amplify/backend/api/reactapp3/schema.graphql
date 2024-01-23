@@ -1,6 +1,15 @@
+type List @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  image: String
+  L2N: [Note] @hasMany(indexName: "byList", fields: ["id"])
+}
+
 type Note @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   description: String
   image: String
+  listID: ID! @index(name: "byList")
 } 

@@ -5,7 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ListCardProps } from "./ListCard";
+import { CollectionProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,13 +18,17 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type InfoOverridesProps = {
-    Info?: PrimitiveOverrideProps<ViewProps>;
-    "Shopper Planner"?: PrimitiveOverrideProps<TextProps>;
-    Info38514483?: PrimitiveOverrideProps<TextProps>;
-    "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."?: PrimitiveOverrideProps<TextProps>;
+export declare type ListCardCollectionOverridesProps = {
+    ListCardCollection?: PrimitiveOverrideProps<CollectionProps>;
+    ListCard?: ListCardProps;
 } & EscapeHatchProps;
-export declare type InfoProps = React.PropsWithChildren<Partial<ViewProps> & {
-    overrides?: InfoOverridesProps | undefined | null;
+export declare type ListCardCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+    items?: any[];
+    overrideItems?: (collectionItem: {
+        item: any;
+        index: number;
+    }) => ListCardProps;
+} & {
+    overrides?: ListCardCollectionOverridesProps | undefined | null;
 }>;
-export default function Info(props: InfoProps): React.ReactElement;
+export default function ListCardCollection(props: ListCardCollectionProps): React.ReactElement;

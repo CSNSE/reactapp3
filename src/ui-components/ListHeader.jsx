@@ -6,22 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { getOverrideProps } from "./utils";
 import { Button, Text, View } from "@aws-amplify/ui-react";
-export default function Header(props) {
+export default function ListHeader(props) {
   const { overrides, ...rest } = props;
-  const shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick = useNavigateAction({
-    type: "url",
-    url: "/",
-  });
-  const buttonThreeNineThreeZeroTwoSixOneOnClick = useNavigateAction({
-    type: "url",
-    url: "/new",
-  });
-  const buttonThreeNineThreeZeroTwoSixTwoOnClick = useNavigateAction({
-    type: "url",
-    url: "/info",
-  });
   return (
     <View
       width="390px"
@@ -34,7 +22,7 @@ export default function Header(props) {
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "Header")}
+      {...getOverrideProps(overrides, "ListHeader")}
       {...rest}
     >
       <Text
@@ -57,10 +45,7 @@ export default function Header(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
-        onClick={() => {
-          shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick();
-        }}
-        {...getOverrideProps(overrides, "Shopper Planner3930259")}
+        {...getOverrideProps(overrides, "Shopper Planner39533679")}
       ></Text>
       <Text
         fontFamily="Istok Web"
@@ -82,7 +67,7 @@ export default function Header(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
-        {...getOverrideProps(overrides, "Shopper Planner3930260")}
+        {...getOverrideProps(overrides, "Shopper Planner39533680")}
       ></Text>
       <Button
         width="unset"
@@ -94,11 +79,8 @@ export default function Header(props) {
         size="default"
         isDisabled={false}
         variation="default"
-        children="New"
-        onClick={() => {
-          buttonThreeNineThreeZeroTwoSixOneOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button3930261")}
+        children="New List"
+        {...getOverrideProps(overrides, "Button39533681")}
       ></Button>
       <Button
         width="unset"
@@ -110,11 +92,8 @@ export default function Header(props) {
         size="default"
         isDisabled={false}
         variation="default"
-        children="Back"
-        onClick={() => {
-          buttonThreeNineThreeZeroTwoSixTwoOnClick();
-        }}
-        {...getOverrideProps(overrides, "Button3930262")}
+        children="Guide"
+        {...getOverrideProps(overrides, "Button39533682")}
       ></Button>
     </View>
   );

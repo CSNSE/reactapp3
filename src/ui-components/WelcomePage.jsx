@@ -8,24 +8,20 @@
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Text, View } from "@aws-amplify/ui-react";
-export default function Header(props) {
+export default function WelcomePage(props) {
   const { overrides, ...rest } = props;
-  const shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick = useNavigateAction({
+  const buttonThreeNineFiveThreeThreeSixFourTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: "/0",
   });
-  const buttonThreeNineThreeZeroTwoSixOneOnClick = useNavigateAction({
-    type: "url",
-    url: "/new",
-  });
-  const buttonThreeNineThreeZeroTwoSixTwoOnClick = useNavigateAction({
+  const buttonThreeNineFiveThreeThreeSixNineNineOnClick = useNavigateAction({
     type: "url",
     url: "/info",
   });
   return (
     <View
       width="390px"
-      height="192px"
+      height="713px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -34,7 +30,7 @@ export default function Header(props) {
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "Header")}
+      {...getOverrideProps(overrides, "WelcomePage")}
       {...rest}
     >
       <Text
@@ -48,74 +44,74 @@ export default function Header(props) {
         direction="column"
         justifyContent="unset"
         width="392px"
-        height="63px"
+        height="71px"
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="48px"
-        left="-2px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Shopper Planner"
-        onClick={() => {
-          shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick();
-        }}
-        {...getOverrideProps(overrides, "Shopper Planner3930259")}
-      ></Text>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="12px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        lineHeight="17.2734375px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="110px"
-        height="33px"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="15px"
+        top="50px"
         left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
-        {...getOverrideProps(overrides, "Shopper Planner3930260")}
+        {...getOverrideProps(overrides, "Shopper Planner")}
       ></Text>
       <Button
         width="unset"
         height="unset"
         position="absolute"
-        top="119px"
-        left="42px"
+        top="627px"
+        left="53px"
         backgroundColor="rgba(11,153,255,1)"
         size="default"
         isDisabled={false}
         variation="default"
-        children="New"
+        children="Begin"
         onClick={() => {
-          buttonThreeNineThreeZeroTwoSixOneOnClick();
+          buttonThreeNineFiveThreeThreeSixFourTwoOnClick();
         }}
-        {...getOverrideProps(overrides, "Button3930261")}
+        {...getOverrideProps(overrides, "Button39533642")}
       ></Button>
       <Button
         width="unset"
         height="unset"
         position="absolute"
-        top="119px"
-        left="270px"
+        top="627px"
+        left="293px"
         backgroundColor="rgba(11,153,255,1)"
         size="default"
         isDisabled={false}
         variation="default"
-        children="Back"
+        children="Info"
         onClick={() => {
-          buttonThreeNineThreeZeroTwoSixTwoOnClick();
+          buttonThreeNineFiveThreeThreeSixNineNineOnClick();
         }}
-        {...getOverrideProps(overrides, "Button3930262")}
+        {...getOverrideProps(overrides, "Button39533699")}
       ></Button>
+      <Text
+        fontFamily="Istok Web"
+        fontSize="36px"
+        fontWeight="700"
+        color="rgba(0,0,0,1)"
+        lineHeight="51.8203125px"
+        textAlign="center"
+        display="block"
+        direction="column"
+        justifyContent="unset"
+        width="370px"
+        height="420px"
+        gap="unset"
+        alignItems="unset"
+        position="absolute"
+        top="147px"
+        left="10px"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children="Welcome to Shopper Planner. You can press info to learn about us and begin making your list when your ready."
+        {...getOverrideProps(
+          overrides,
+          "Welcome to Shopper Planner. You can press info to learn about us and begin making your list when your ready."
+        )}
+      ></Text>
     </View>
   );
 }

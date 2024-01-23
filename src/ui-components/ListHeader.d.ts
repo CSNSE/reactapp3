@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,13 +17,14 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type InfoOverridesProps = {
-    Info?: PrimitiveOverrideProps<ViewProps>;
-    "Shopper Planner"?: PrimitiveOverrideProps<TextProps>;
-    Info38514483?: PrimitiveOverrideProps<TextProps>;
-    "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."?: PrimitiveOverrideProps<TextProps>;
+export declare type ListHeaderOverridesProps = {
+    ListHeader?: PrimitiveOverrideProps<ViewProps>;
+    "Shopper Planner39533679"?: PrimitiveOverrideProps<TextProps>;
+    "Shopper Planner39533680"?: PrimitiveOverrideProps<TextProps>;
+    Button39533681?: PrimitiveOverrideProps<ButtonProps>;
+    Button39533682?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type InfoProps = React.PropsWithChildren<Partial<ViewProps> & {
-    overrides?: InfoOverridesProps | undefined | null;
+export declare type ListHeaderProps = React.PropsWithChildren<Partial<ViewProps> & {
+    overrides?: ListHeaderOverridesProps | undefined | null;
 }>;
-export default function Info(props: InfoProps): React.ReactElement;
+export default function ListHeader(props: ListHeaderProps): React.ReactElement;
