@@ -79,7 +79,6 @@ export default function ListCardCollection(props) {
   return (
     <div>
       <Collection
-       backgroundColor="rgba(255,255,255)"
         type="list"
         isSearchable={true}
         searchPlaceholder="Search..."

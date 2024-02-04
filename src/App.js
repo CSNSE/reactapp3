@@ -19,6 +19,7 @@ class App extends Component {
     <div className="App"><header className="App-header">
 <Routes>
 <Route exact path='/' element={<div><Header/><ListCardCollection/></div>} />
+<Route exact path='/1edit/:cid' element={<FoodCardCollection/>} />
 <Route exact path='/0' element={<div><WelcomePage/></div>} />
 <Route exact path='/new' element={<div><Header/><ItemInfo/></div>} />
 <Route exact path='/info' element={<div><Info/></div>} />
@@ -33,20 +34,7 @@ class App extends Component {
 
 
 
-    <ListCardCollection
-      overrideItems={({ item, index }) => ({
-        notes: <FoodCardCollection /> //Add the child collection to the "comments" slot
-        
-      })}
-    />
-
-
-<ListCardCollection
-      overrideItems={({ item, index }) => ({
-        /*Set the items in this collection to be only related items*/
-        notes: <FoodCardCollection items={item.Notes.items} />
-      })}
-    />
+   
 
     );
 }

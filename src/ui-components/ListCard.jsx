@@ -12,6 +12,10 @@ import { deleteList } from "../graphql/mutations";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function ListCard(props) {
   const { lst, overrides, ...rest } = props;
+  const imageOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/1edit/"}${lst?.id}`,
+  });
   const buttonThreeNineFiveThreeThreeEightSevenTwoOnClick = useNavigateAction({
     type: "url",
     url: "/Ledit",
@@ -55,6 +59,9 @@ export default function ListCard(props) {
         padding="0px 0px 0px 0px"
         objectFit="cover"
         src={lst?.image}
+        onClick={() => {
+          imageOnClick();
+        }}
         {...getOverrideProps(overrides, "image")}
       ></Image>
       <Flex

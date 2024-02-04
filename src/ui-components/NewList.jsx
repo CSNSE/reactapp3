@@ -6,33 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useState } from "react";
-import { API } from "aws-amplify";
-import { createList } from "../graphql/mutations";
 import { getOverrideProps } from "./utils";
 import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function NewList(props) {
-  const { lst, overrides, ...rest } = props;
-  const [
-    textFieldThreeNineFiveThreeThreeSevenNineZeroValue,
-    setTextFieldThreeNineFiveThreeThreeSevenNineZeroValue,
-  ] = useState("");
-  const [
-    textFieldThreeNineFiveThreeThreeSevenNineTwoValue,
-    setTextFieldThreeNineFiveThreeThreeSevenNineTwoValue,
-  ] = useState("");
-  const buttonOnClick = async () => {
-    await API.graphql({
-      query: createList.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          name: textFieldThreeNineFiveThreeThreeSevenNineZeroValue,
-          description: textFieldThreeNineFiveThreeThreeSevenNineTwoValue,
-          image: textFieldThreeNineFiveThreeThreeSevenNineTwoValue,
-        },
-      },
-    });
-  };
+  const { lst, not, overrides, ...rest } = props;
   return (
     <View
       width="390px"
@@ -67,13 +44,13 @@ export default function NewList(props) {
         left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Create List"
-        {...getOverrideProps(overrides, "Create List")}
+        children="Create Event"
+        {...getOverrideProps(overrides, "Create Event")}
       ></Text>
       <TextField
         width="300px"
         height="unset"
-        label="Item"
+        label="Event Name"
         position="absolute"
         top="197px"
         left="45px"
@@ -82,12 +59,6 @@ export default function NewList(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeNineFiveThreeThreeSevenNineZeroValue}
-        onChange={(event) => {
-          setTextFieldThreeNineFiveThreeThreeSevenNineZeroValue(
-            event.target.value
-          );
-        }}
         {...getOverrideProps(overrides, "TextField39533790")}
       ></TextField>
       <TextField
@@ -109,19 +80,13 @@ export default function NewList(props) {
         height="unset"
         label="Image"
         position="absolute"
-        top="441px"
-        left="45px"
+        top="427px"
+        left="44px"
         placeholder={lst?.image}
         size="default"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeNineFiveThreeThreeSevenNineTwoValue}
-        onChange={(event) => {
-          setTextFieldThreeNineFiveThreeThreeSevenNineTwoValue(
-            event.target.value
-          );
-        }}
         {...getOverrideProps(overrides, "TextField39533792")}
       ></TextField>
       <Button
@@ -135,9 +100,6 @@ export default function NewList(props) {
         isDisabled={false}
         variation="default"
         children="Finish"
-        onClick={() => {
-          buttonOnClick();
-        }}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
     </View>

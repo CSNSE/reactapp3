@@ -19,7 +19,7 @@ export declare type Variant = {
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NewListOverridesProps = {
     NewList?: PrimitiveOverrideProps<ViewProps>;
-    "Create List"?: PrimitiveOverrideProps<TextProps>;
+    "Create Event"?: PrimitiveOverrideProps<TextProps>;
     TextField39533790?: PrimitiveOverrideProps<TextFieldProps>;
     TextField39533791?: PrimitiveOverrideProps<TextFieldProps>;
     TextField39533792?: PrimitiveOverrideProps<TextFieldProps>;
@@ -27,6 +27,7 @@ export declare type NewListOverridesProps = {
 } & EscapeHatchProps;
 export declare type NewListProps = React.PropsWithChildren<Partial<ViewProps> & {
     lst?: any;
+    not?: any;
 } & {
     overrides?: NewListOverridesProps | undefined | null;
 }>;
