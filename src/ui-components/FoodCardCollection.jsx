@@ -94,8 +94,8 @@ const notesFromAPI = result.items
   return (
     <div>
       <Collection
-  
         type="list"
+        isSearchable={true}
         searchPlaceholder="Search..."
         direction="column"
         justifyContent="left"

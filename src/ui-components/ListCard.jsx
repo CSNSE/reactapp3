@@ -14,7 +14,7 @@ export default function ListCard(props) {
   const { lst, overrides, ...rest } = props;
   const imageOnClick = useNavigateAction({
     type: "url",
-    url: `${"/1edit/"}${lst?.id}`,
+    url: `${"/1edit/"}${lst?.name}`,
   });
   const buttonThreeNineFiveThreeThreeEightSevenTwoOnClick = useNavigateAction({
     type: "url",
@@ -154,7 +154,7 @@ export default function ListCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={lst?.id}
+            children={lst?.createdAt}
             {...getOverrideProps(overrides, "example39533871")}
           ></Text>
         </Flex>

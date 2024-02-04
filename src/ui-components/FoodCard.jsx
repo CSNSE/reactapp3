@@ -149,7 +149,7 @@ export default function FoodCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={fc?.updatedAt}
+            children={fc?.ListName}
             {...getOverrideProps(overrides, "example390554")}
           ></Text>
         </Flex>

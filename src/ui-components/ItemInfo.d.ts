@@ -25,9 +25,12 @@ export declare type ItemInfoOverridesProps = {
     TextField3930226?: PrimitiveOverrideProps<TextFieldProps>;
     Button3930183?: PrimitiveOverrideProps<ButtonProps>;
     Button3930187?: PrimitiveOverrideProps<ButtonProps>;
+    TextField39931269?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ItemInfoProps = React.PropsWithChildren<Partial<ViewProps> & {
     food?: any;
+    lst?: any;
+    itemInfo?: React.ReactNode;
 } & {
     overrides?: ItemInfoOverridesProps | undefined | null;
 }>;

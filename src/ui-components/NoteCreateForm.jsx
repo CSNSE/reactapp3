@@ -32,23 +32,27 @@ export default function NoteCreateForm(props) {
     name: "",
     description: "",
     image: undefined,
+    ListName: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [image, setImage] = React.useState(initialValues.image);
+  const [ListName, setListName] = React.useState(initialValues.ListName);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setDescription(initialValues.description);
     setImage(initialValues.image);
+    setListName(initialValues.ListName);
     setErrors({});
   };
   const validations = {
     name: [{ type: "Required" }],
     description: [],
     image: [],
+    ListName: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -79,6 +83,7 @@ export default function NoteCreateForm(props) {
           name,
           description,
           image,
+          ListName,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -144,6 +149,7 @@ export default function NoteCreateForm(props) {
               name: value,
               description,
               image,
+              ListName,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -170,6 +176,7 @@ export default function NoteCreateForm(props) {
               name,
               description: value,
               image,
+              ListName,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -200,6 +207,7 @@ export default function NoteCreateForm(props) {
                   name,
                   description,
                   image: value,
+                  ListName,
                 };
                 const result = onChange(modelFields);
                 value = result?.image ?? value;
@@ -215,6 +223,7 @@ export default function NoteCreateForm(props) {
                   name,
                   description,
                   image: value,
+                  ListName,
                 };
                 const result = onChange(modelFields);
                 value = result?.image ?? value;
@@ -231,6 +240,33 @@ export default function NoteCreateForm(props) {
           {...getOverrideProps(overrides, "image")}
         ></StorageManager>
       </Field>
+      <TextField
+        label="List name"
+        isRequired={false}
+        isReadOnly={false}
+        value={ListName}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              image,
+              ListName: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.ListName ?? value;
+          }
+          if (errors.ListName?.hasError) {
+            runValidationTasks("ListName", value);
+          }
+          setListName(value);
+        }}
+        onBlur={() => runValidationTasks("ListName", ListName)}
+        errorMessage={errors.ListName?.errorMessage}
+        hasError={errors.ListName?.hasError}
+        {...getOverrideProps(overrides, "ListName")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
