@@ -45,37 +45,43 @@ export default function FoodCardCollection(props) {
     const cacheUntil = page * pageSize + 1;
     const newCache = apiCache[instanceKey].slice();
     let newNext = nextToken[instanceKey];
-    while ((newCache.length < cacheUntil || !isPaginated) && newNext != null) {
-      setLoading(true);
-      const variables = {
-        limit: pageSize,
-      };
-      if (newNext) {
-        variables["nextToken"] = newNext;
-      }
-      const result = (
-        await API.graphql({
-          query: listNotes.replaceAll("__typename", ""),
-          variables,
-        })
-      ).data.listNotes;
-      newCache.push(...result.items);
-      newNext = result.nextToken;
-const notesFromAPI = result.items
-      const user = await Auth.currentAuthenticatedUser();
-       await Promise.all(
-        notesFromAPI.map(async (note) => {
-          if (note.image) {
-            const url = await Storage.get(note.image);
-            console.log(note.image + "  " + note.name);
-            //console.log(user.attributes.email + "  " + note.author);
-            note.image = url;
-            console.log(note.image);
-          }
-          return note;
-        })
-        );
-    }
+
+//     while ((newCache.length < cacheUntil || !isPaginated) && newNext != null) {
+//       setLoading(true);
+//       const variables = {
+//         limit: pageSize,
+//       };
+//       if (newNext) {
+//         variables["nextToken"] = newNext;
+//       }
+//       console.log("while loop count");
+
+//       // const result = (
+        
+//       //   await API.graphql({
+//       //     query: listNotes.replaceAll("__typename", ""),
+//       //     variables,
+//       //   })
+//       // ).data.listNotes;
+      
+//       newCache.push(...result.items);
+//       newNext = result.nextToken;
+// const notesFromAPI = result.items
+//       const user = await Auth.currentAuthenticatedUser();
+//        await Promise.all(
+//         notesFromAPI.map(async (note) => {
+//           if (note.image) {
+//             const url = await Storage.get(note.image);
+//             console.log(note.image + "  " + note.name);
+//             //console.log(user.attributes.email + "  " + note.author);
+//             note.image = url;
+//             console.log(note.image);
+//           }
+//           return note;
+//         })
+//         );
+//     }
+
     const cacheSlice = isPaginated
       ? newCache.slice((page - 1) * pageSize, page * pageSize)
       : newCache;
@@ -96,7 +102,7 @@ const notesFromAPI = result.items
       <Collection
         type="list"
         isSearchable={true}
-        searchPlaceholder="Search..."
+        searchPlaceholder="Val"
         direction="column"
         justifyContent="left"
         itemsPerPage={pageSize}

@@ -43,4 +43,4 @@ useEffect(() => {
   );
 }
 
-export default FoodCardCollection;
+//export default FoodCardCollection;

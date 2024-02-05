@@ -11,10 +11,6 @@ export const createList = /* GraphQL */ `
       name
       description
       image
-      L2N {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -31,10 +27,6 @@ export const updateList = /* GraphQL */ `
       name
       description
       image
-      L2N {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -51,10 +43,6 @@ export const deleteList = /* GraphQL */ `
       name
       description
       image
-      L2N {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -71,7 +59,7 @@ export const createNote = /* GraphQL */ `
       name
       description
       image
-      listID
+      ListName
       createdAt
       updatedAt
       __typename
@@ -88,7 +76,7 @@ export const updateNote = /* GraphQL */ `
       name
       description
       image
-      listID
+      ListName
       createdAt
       updatedAt
       __typename
@@ -105,7 +93,7 @@ export const deleteNote = /* GraphQL */ `
       name
       description
       image
-      listID
+      ListName
       createdAt
       updatedAt
       __typename
