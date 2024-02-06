@@ -25,6 +25,17 @@ export default function FoodCardCollection(props) {
   const [maxViewed, setMaxViewed] = React.useState(1);
   const pageSize = 5;
   const isPaginated = true;
+  // Function to extract the last part of the URL
+function getKeywordFromUrl() {
+  const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
+  const parts = pathname.split('/'); // Split the path by '/'
+  return parts[parts.length - 1]; // Return the last part
+}
+
+// Usage
+const keyword = getKeywordFromUrl();
+console.log(keyword); // "Valetines"
+
   React.useEffect(() => {
     nextToken[instanceKey] = "";
     apiCache[instanceKey] = [];
@@ -45,28 +56,26 @@ export default function FoodCardCollection(props) {
     const cacheUntil = page * pageSize + 1;
     const newCache = apiCache[instanceKey].slice();
     let newNext = nextToken[instanceKey];
-
- while ((newCache.length < cacheUntil || !isPaginated) && newNext != null) {
+    while ((newCache.length < cacheUntil || !isPaginated) && newNext != null) {
       setLoading(true);
       const variables = {
         limit: pageSize,
+        filter: { ListName: { contains: keyword } },
       };
       if (newNext) {
         variables["nextToken"] = newNext;
       }
-      console.log("while loop count");
+console.log("while loop count");
 
-       const result = (
-        
-         await API.graphql({
-        query: listNotes.replaceAll("__typename", ""),
+      const result = (
+        await API.graphql({
+          query: listNotes.replaceAll("__typename", ""),
           variables,
         })
       ).data.listNotes;
-      
       newCache.push(...result.items);
       newNext = result.nextToken;
-const notesFromAPI = result.items
+    const notesFromAPI = result.items
       const user = await Auth.currentAuthenticatedUser();
        await Promise.all(
         notesFromAPI.map(async (note) => {
@@ -101,8 +110,8 @@ const notesFromAPI = result.items
     <div>
       <Collection
         type="list"
-        isSearchable={true}
-        searchPlaceholder="Val"
+        isSearchable={false}
+        searchPlaceholder="Search..."
         direction="column"
         justifyContent="left"
         itemsPerPage={pageSize}
