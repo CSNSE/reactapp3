@@ -40,13 +40,14 @@ export default function EditItem(props) {
           description: textFieldThreeNineFourFiveEightNineValue,
           image: imageName,
           id: edt?.id,
+          
         },
       },
     });
   };
   const buttonOnMouseUp = useNavigateAction({
     type: "url",
-    url: `${"/edit/"}${edt?.id}`,
+    url: `${"/1edit/"}${edt?.ListName}`,
   });
   return (
     <View
