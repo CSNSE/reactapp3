@@ -12,7 +12,7 @@ export default function Header(props) {
   const { overrides, ...rest } = props;
   const shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: "/lists",
   });
   const buttonThreeNineThreeZeroTwoSixOneOnClick = useNavigateAction({
     type: "url",
@@ -20,7 +20,7 @@ export default function Header(props) {
   });
   const buttonThreeNineThreeZeroTwoSixTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/info",
+    url: "/lists",
   });
   return (
     <View
