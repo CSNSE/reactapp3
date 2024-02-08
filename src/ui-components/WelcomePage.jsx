@@ -12,7 +12,7 @@ export default function WelcomePage(props) {
   const { overrides, ...rest } = props;
   const buttonThreeNineFiveThreeThreeSixFourTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/0",
+    url: "/lists",
   });
   const buttonThreeNineFiveThreeThreeSixNineNineOnClick = useNavigateAction({
     type: "url",

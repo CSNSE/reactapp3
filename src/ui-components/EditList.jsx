@@ -6,10 +6,39 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { useState } from "react";
+import { API } from "aws-amplify";
+import { updateList } from "../graphql/mutations";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function EditList(props) {
-  const { overrides, ...rest } = props;
+  const { list, overrides, ...rest } = props;
+  const [
+    textFieldThreeNineFiveThreeThreeEightTwoOneValue,
+    setTextFieldThreeNineFiveThreeThreeEightTwoOneValue,
+  ] = useState("");
+  const [
+    textFieldThreeNineFiveThreeThreeEightTwoTwoValue,
+    setTextFieldThreeNineFiveThreeThreeEightTwoTwoValue,
+  ] = useState("");
+  const [
+    textFieldThreeNineFiveThreeThreeEightTwoThreeValue,
+    setTextFieldThreeNineFiveThreeThreeEightTwoThreeValue,
+  ] = useState("");
+  const buttonOnMouseDown = async () => {
+    await API.graphql({
+      query: updateList.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldThreeNineFiveThreeThreeEightTwoOneValue,
+          description: textFieldThreeNineFiveThreeThreeEightTwoTwoValue,
+          image: textFieldThreeNineFiveThreeThreeEightTwoThreeValue,
+          id: list?.id,
+        },
+      },
+    });
+  };
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/lists" });
   return (
     <View
       width="390px"
@@ -59,6 +88,12 @@ export default function EditList(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeNineFiveThreeThreeEightTwoOneValue}
+        onChange={(event) => {
+          setTextFieldThreeNineFiveThreeThreeEightTwoOneValue(
+            event.target.value
+          );
+        }}
         {...getOverrideProps(overrides, "TextField39533821")}
       ></TextField>
       <TextField
@@ -73,6 +108,12 @@ export default function EditList(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeNineFiveThreeThreeEightTwoTwoValue}
+        onChange={(event) => {
+          setTextFieldThreeNineFiveThreeThreeEightTwoTwoValue(
+            event.target.value
+          );
+        }}
         {...getOverrideProps(overrides, "TextField39533822")}
       ></TextField>
       <TextField
@@ -87,6 +128,12 @@ export default function EditList(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
+        value={textFieldThreeNineFiveThreeThreeEightTwoThreeValue}
+        onChange={(event) => {
+          setTextFieldThreeNineFiveThreeThreeEightTwoThreeValue(
+            event.target.value
+          );
+        }}
         {...getOverrideProps(overrides, "TextField39533823")}
       ></TextField>
       <Button
@@ -100,6 +147,12 @@ export default function EditList(props) {
         isDisabled={false}
         variation="default"
         children="Finish"
+        onMouseDown={() => {
+          buttonOnMouseDown();
+        }}
+        onMouseUp={() => {
+          buttonOnMouseUp();
+        }}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
     </View>

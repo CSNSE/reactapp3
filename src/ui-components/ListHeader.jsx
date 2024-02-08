@@ -6,10 +6,20 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Text, View } from "@aws-amplify/ui-react";
 export default function ListHeader(props) {
   const { overrides, ...rest } = props;
+  const shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick =
+    useNavigateAction({ type: "url", url: "/list" });
+  const buttonThreeNineFiveThreeThreeSixEightOneOnClick = useNavigateAction({
+    type: "url",
+    url: "newList",
+  });
+  const buttonThreeNineFiveThreeThreeSixEightTwoOnClick = useNavigateAction({
+    type: "url",
+    url: "/guide",
+  });
   return (
     <View
       width="390px"
@@ -45,6 +55,9 @@ export default function ListHeader(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
+        onClick={() => {
+          shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick();
+        }}
         {...getOverrideProps(overrides, "Shopper Planner39533679")}
       ></Text>
       <Text
@@ -80,6 +93,9 @@ export default function ListHeader(props) {
         isDisabled={false}
         variation="default"
         children="New List"
+        onClick={() => {
+          buttonThreeNineFiveThreeThreeSixEightOneOnClick();
+        }}
         {...getOverrideProps(overrides, "Button39533681")}
       ></Button>
       <Button
@@ -93,6 +109,9 @@ export default function ListHeader(props) {
         isDisabled={false}
         variation="default"
         children="Guide"
+        onClick={() => {
+          buttonThreeNineFiveThreeThreeSixEightTwoOnClick();
+        }}
         {...getOverrideProps(overrides, "Button39533682")}
       ></Button>
     </View>

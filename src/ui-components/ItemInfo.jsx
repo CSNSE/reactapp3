@@ -7,12 +7,28 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
+import { Auth } from "@aws-amplify/auth";
 import { API } from "aws-amplify";
+import { Field } from "@aws-amplify/ui-react/internal";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { createNote } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
-import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
+import { getOverrideProps, useNavigateAction, processFile } from "./utils";
+import {
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  Image,
+  Text,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
 export default function ItemInfo(props) {
-  const { food, lst, itemInfo, overrides, ...rest } = props;
+  const { food, overrides, ...rest } = props;
+const [
+    imageName,
+    setImageName,
+  ] = useState("");
   const [
     textFieldThreeNineThreeZeroTwoTwoFourValue,
     setTextFieldThreeNineThreeZeroTwoTwoFourValue,
@@ -36,8 +52,7 @@ export default function ItemInfo(props) {
         input: {
           name: textFieldThreeNineThreeZeroTwoTwoFourValue,
           description: textFieldThreeNineThreeZeroTwoTwoFiveValue,
-          image: textFieldThreeNineThreeZeroTwoTwoSixValue,
-          listID: textFieldThreeNineThreeZeroTwoTwoFourValue,
+          image: imageName,
           ListName: textFieldThreeNineNineThreeOneTwoSixNineValue,
         },
       },
@@ -45,7 +60,7 @@ export default function ItemInfo(props) {
   };
   const buttonThreeNineThreeZeroOneEightSevenOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: `${"/1edit/"}${textFieldThreeNineNineThreeOneTwoSixNineValue}`,
   });
   return (
     <View
@@ -120,24 +135,34 @@ export default function ItemInfo(props) {
         }}
         {...getOverrideProps(overrides, "TextField3930225")}
       ></TextField>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Image"
+      
+     <Field
+        
         position="absolute"
-        top="329px"
+        top="400px"
         left="43px"
-        placeholder="Placeholder"
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineThreeZeroTwoTwoSixValue}
-        onChange={(event) => {
-          setTextFieldThreeNineThreeZeroTwoTwoSixValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField3930226")}
-      ></TextField>
+        
+label={"Image"}
+isRequired={false}
+isReadOnly={false}
+>
+<StorageManager
+  onUploadSuccess={({ key }) => {
+    setImageName(
+      key
+    );
+  }}
+  processFile={processFile}
+  accessLevel={"public"}
+  acceptedFileTypes={[]}
+  isResumable={false}
+  showThumbnails={true}
+  maxFileCount={1}
+  {...getOverrideProps(overrides, "image")}
+      ></StorageManager>
+
+</Field>
+
       <Button
         width="unset"
         height="unset"
@@ -175,7 +200,7 @@ export default function ItemInfo(props) {
         height="unset"
         label="Event Name"
         position="absolute"
-        top="431px"
+        top="320px"
         left="43px"
         placeholder="Placeholder"
         size="default"

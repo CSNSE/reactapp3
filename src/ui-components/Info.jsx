@@ -6,10 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
-import { Text, View } from "@aws-amplify/ui-react";
+import { getOverrideProps, useNavigateAction } from "./utils";
+import { Button, Text, View } from "@aws-amplify/ui-react";
 export default function Info(props) {
   const { overrides, ...rest } = props;
+  const buttonOnClick = useNavigateAction({ type: "url", url: "/" });
   return (
     <View
       width="390px"
@@ -64,7 +65,7 @@ export default function Info(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="123px"
+        top="87px"
         left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
@@ -87,8 +88,8 @@ export default function Info(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="136px"
-        left="10px"
+        top="87px"
+        left="8px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."
@@ -97,6 +98,22 @@ export default function Info(props) {
           "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."
         )}
       ></Text>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="465px"
+        left="158px"
+        backgroundColor="rgba(11,153,255,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="Back"
+        onClick={() => {
+          buttonOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button")}
+      ></Button>
     </View>
   );
 }

@@ -26,6 +26,8 @@ export declare type EditListOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type EditListProps = React.PropsWithChildren<Partial<ViewProps> & {
+    list?: any;
+} & {
     overrides?: EditListOverridesProps | undefined | null;
 }>;
 export default function EditList(props: EditListProps): React.ReactElement;

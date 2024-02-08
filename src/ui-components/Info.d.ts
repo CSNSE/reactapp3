@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -22,6 +22,7 @@ export declare type InfoOverridesProps = {
     "Shopper Planner"?: PrimitiveOverrideProps<TextProps>;
     Info38514483?: PrimitiveOverrideProps<TextProps>;
     "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."?: PrimitiveOverrideProps<TextProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type InfoProps = React.PropsWithChildren<Partial<ViewProps> & {
     overrides?: InfoOverridesProps | undefined | null;

@@ -18,7 +18,7 @@ export default function ListCard(props) {
   });
   const buttonThreeNineFiveThreeThreeEightSevenTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/Ledit",
+    url: `${"/ediList/"}${lst?.id}`,
   });
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseDown = async () => {
     await API.graphql({
@@ -31,7 +31,7 @@ export default function ListCard(props) {
     });
   };
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseUp =
-    useNavigateAction({ type: "url", url: "/1" });
+    useNavigateAction({ type: "url", url: "/lists" });
   return (
     <Flex
       gap="0"
