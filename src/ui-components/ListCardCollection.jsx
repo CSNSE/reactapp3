@@ -9,11 +9,12 @@ import * as React from "react";
 import { listLists } from "../graphql/queries";
 import ListCard from "./ListCard";
 import { getOverrideProps } from "./utils";
+import { Auth } from "@aws-amplify/auth";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
-import { API } from "aws-amplify";
+import { API,Storage } from "aws-amplify";
 const nextToken = {};
 const apiCache = {};
-export default function ListCardCollection(props) {
+export default function FoodCardCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasMorePages, setHasMorePages] = React.useState(true);
@@ -22,8 +23,18 @@ export default function ListCardCollection(props) {
   const [instanceKey, setInstanceKey] = React.useState("newGuid");
   const [loading, setLoading] = React.useState(true);
   const [maxViewed, setMaxViewed] = React.useState(1);
-  const pageSize = 6;
-  const isPaginated = false;
+  const pageSize = 5;
+  const isPaginated = true;
+  // Function to extract the last part of the URL
+function getKeywordFromUrl() {
+  const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
+  const parts = pathname.split('/'); // Split the path by '/'
+  return parts[parts.length - 1]; // Return the last part
+}
+
+// Usage
+
+
   React.useEffect(() => {
     nextToken[instanceKey] = "";
     apiCache[instanceKey] = [];
@@ -48,10 +59,13 @@ export default function ListCardCollection(props) {
       setLoading(true);
       const variables = {
         limit: pageSize,
+      
       };
       if (newNext) {
         variables["nextToken"] = newNext;
       }
+console.log("while loop count");
+
       const result = (
         await API.graphql({
           query: listLists.replaceAll("__typename", ""),
@@ -60,7 +74,22 @@ export default function ListCardCollection(props) {
       ).data.listLists;
       newCache.push(...result.items);
       newNext = result.nextToken;
+    const notesFromAPI = result.items
+      const user = await Auth.currentAuthenticatedUser();
+       await Promise.all(
+        notesFromAPI.map(async (list) => {
+          if (list.image) {
+            const url = await Storage.get(list.image);
+            console.log(list.image + "  " + list.name);
+            //console.log(user.attributes.email + "  " + note.author);
+            list.image = url;
+            console.log(list.image);
+          }
+          return list;
+        })
+        );
     }
+  
     const cacheSlice = isPaginated
       ? newCache.slice((page - 1) * pageSize, page * pageSize)
       : newCache;
