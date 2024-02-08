@@ -8,11 +8,17 @@
 import * as React from "react";
 import { useState } from "react";
 import { API } from "aws-amplify";
+import { Field } from "@aws-amplify/ui-react/internal";
 import { updateList } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import { getOverrideProps, useNavigateAction,processFile} from "./utils";
 import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function EditList(props) {
   const { list, overrides, ...rest } = props;
+  const [
+    imageName,
+    setImageName,
+  ] = useState("");
   const [
     textFieldThreeNineFiveThreeThreeEightTwoOneValue,
     setTextFieldThreeNineFiveThreeThreeEightTwoOneValue,
@@ -26,13 +32,14 @@ export default function EditList(props) {
     setTextFieldThreeNineFiveThreeThreeEightTwoThreeValue,
   ] = useState("");
   const buttonOnMouseDown = async () => {
+
     await API.graphql({
       query: updateList.replaceAll("__typename", ""),
       variables: {
         input: {
           name: textFieldThreeNineFiveThreeThreeEightTwoOneValue,
           description: textFieldThreeNineFiveThreeThreeEightTwoTwoValue,
-          image: textFieldThreeNineFiveThreeThreeEightTwoThreeValue,
+          image: imageName,
           id: list?.id,
         },
       },
@@ -116,26 +123,29 @@ export default function EditList(props) {
         }}
         {...getOverrideProps(overrides, "TextField39533822")}
       ></TextField>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Image"
-        position="absolute"
-        top="441px"
-        left="45px"
-        placeholder="Placeholder"
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineFiveThreeThreeEightTwoThreeValue}
-        onChange={(event) => {
-          setTextFieldThreeNineFiveThreeThreeEightTwoThreeValue(
-            event.target.value
-          );
-        }}
-        {...getOverrideProps(overrides, "TextField39533823")}
-      ></TextField>
+     <Field
+position="absolute"
+top="400px"
+left="43px"
+label={"Image"}
+isRequired={false}
+isReadOnly={false}
+>
+<StorageManager
+  onUploadSuccess={({ key }) => {
+    setImageName(
+      key
+    );
+  }}
+  processFile={processFile}
+  accessLevel={"public"}
+  acceptedFileTypes={[]}
+  isResumable={false}
+  showThumbnails={true}
+  maxFileCount={1}
+  {...getOverrideProps(overrides, "image")}
+></StorageManager>
+</Field>
       <Button
         width="unset"
         height="unset"

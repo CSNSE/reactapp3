@@ -4,6 +4,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import {WelcomePage, Header,ListHeader, NewList, EditList, FoodCardCollection, Info, ItemInfo, EditItem, NoteCreateForm, ListCardCollection, Guide} from "./ui-components";
 import EditNote from './EditNote';
 import {Routes, Route} from 'react-router-dom'
+import EditLists from './EditLists';
 
 
 
@@ -26,7 +27,7 @@ class App extends Component {
 <Route exact path='/new' element={<div><Header/><ItemInfo/></div>} />
 <Route exact path='/info' element={<div><Info/></div>} />
 <Route exact path='/edit/:cid' element={<EditNote/>} />
-<Route exact path='/ediList/:cid' element={<EditList/>} />
+<Route exact path='/ediList/:cid' element={<EditLists/>} />
 <Route exact path='/newList' element={<div><ListHeader/><NewList/></div>} />
 {/* <Route exact path='/1edit/:cid' element={<NoteUpdateForm/>} /> */}
 <Route exact path='/1new' element={<div><Header/><NoteCreateForm/></div>} />
