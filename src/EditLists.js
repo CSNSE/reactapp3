@@ -37,7 +37,7 @@ useEffect(() => {
     <div>
       <header className="App-header">
         <ListHeader />
-        <EditList edt={cr} />
+        <EditList list={cr} />
       </header>
     </div>
   );

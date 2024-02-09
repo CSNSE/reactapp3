@@ -11,7 +11,7 @@ import { Button, Text, View } from "@aws-amplify/ui-react";
 export default function ListHeader(props) {
   const { overrides, ...rest } = props;
   const shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick =
-    useNavigateAction({ type: "url", url: "/" });
+    useNavigateAction({ type: "url", url: "/lists" });
   const buttonThreeNineFiveThreeThreeSixEightOneOnClick = useNavigateAction({
     type: "url",
     url: "newList",

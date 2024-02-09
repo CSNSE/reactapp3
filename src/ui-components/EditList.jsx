@@ -43,7 +43,7 @@ export default function EditList(props) {
           id: list?.id,
         },
       },
-    });
+   });
   };
   const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/lists" });
   return (
