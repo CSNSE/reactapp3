@@ -8,13 +8,22 @@
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Text, View } from "@aws-amplify/ui-react";
-export default function Info(props) {
+export default function ListHeader(props) {
   const { overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({ type: "url", url: "/" });
+  const shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick =
+    useNavigateAction({ type: "url", url: "/lists" });
+  const buttonThreeNineFiveThreeThreeSixEightOneOnClick = useNavigateAction({
+    type: "url",
+    url: "newList",
+  });
+  const buttonThreeNineFiveThreeThreeSixEightTwoOnClick = useNavigateAction({
+    type: "url",
+    url: "/guide",
+  });
   return (
     <View
       width="390px"
-      height="532px"
+      height="192px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -23,15 +32,39 @@ export default function Info(props) {
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "Info")}
+      {...getOverrideProps(overrides, "ListHeader")}
       {...rest}
     >
+      <Text
+        fontFamily="Istok Web"
+        fontSize="36px"
+        fontWeight="700"
+        color="rgba(0,0,0,1)"
+        lineHeight="51.8203125px"
+        textAlign="center"
+        display="block"
+        direction="column"
+        justifyContent="unset"
+        width="392px"
+        height="63px"
+        gap="unset"
+        alignItems="unset"
+        position="absolute"
+        top="48px"
+        left="-2px"
+        padding="0px 0px 0px 0px"
+        whiteSpace="pre-wrap"
+        children="Shopper Planner"
+        onClick={() => {
+          shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick();
+        }}
+        {...getOverrideProps(overrides, "Shopper Planner39533679")}
+      ></Text>
       <Text
         fontFamily="Istok Web"
         fontSize="12px"
         fontWeight="700"
         color="rgba(0,0,0,1)"
-        fontStyle="italic"
         lineHeight="17.2734375px"
         textAlign="center"
         display="block"
@@ -42,77 +75,44 @@ export default function Info(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="75px"
-        left="8px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Shopper Planner"
-        {...getOverrideProps(overrides, "Shopper Planner")}
-      ></Text>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="36px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        fontStyle="italic"
-        lineHeight="51.8203125px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="392px"
-        height="71px"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="87px"
+        top="15px"
         left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Info"
-        {...getOverrideProps(overrides, "Info38514483")}
-      ></Text>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="36px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        fontStyle="italic"
-        lineHeight="51.8203125px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="370px"
-        height="420px"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="87px"
-        left="8px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."
-        {...getOverrideProps(
-          overrides,
-          "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."
-        )}
+        children="Shopper Planner"
+        {...getOverrideProps(overrides, "Shopper Planner39533680")}
       ></Text>
       <Button
         width="unset"
         height="unset"
         position="absolute"
-        top="465px"
-        left="158px"
+        top="119px"
+        left="42px"
         backgroundColor="rgba(11,153,255,1)"
         size="default"
         isDisabled={false}
         variation="default"
-        children="Back"
+        children="New List"
         onClick={() => {
-          buttonOnClick();
+          buttonThreeNineFiveThreeThreeSixEightOneOnClick();
         }}
-        {...getOverrideProps(overrides, "Button")}
+        {...getOverrideProps(overrides, "Button39533681")}
+      ></Button>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="119px"
+        left="270px"
+        backgroundColor="rgba(11,153,255,1)"
+        size="default"
+        isDisabled={false}
+        variation="default"
+        children="Guide"
+        onClick={() => {
+          buttonThreeNineFiveThreeThreeSixEightTwoOnClick();
+        }}
+        {...getOverrideProps(overrides, "Button39533682")}
       ></Button>
     </View>
   );

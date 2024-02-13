@@ -17,21 +17,18 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type ItemInfoOverridesProps = {
-    ItemInfo?: PrimitiveOverrideProps<ViewProps>;
-    "Create Item"?: PrimitiveOverrideProps<TextProps>;
-    TextField3930224?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField3930225?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField3930226?: PrimitiveOverrideProps<TextFieldProps>;
-    Button3930183?: PrimitiveOverrideProps<ButtonProps>;
-    Button3930187?: PrimitiveOverrideProps<ButtonProps>;
-    TextField39931269?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type NewListOverridesProps = {
+    NewList?: PrimitiveOverrideProps<ViewProps>;
+    "Create Event"?: PrimitiveOverrideProps<TextProps>;
+    TextField39533790?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField39533791?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField39533792?: PrimitiveOverrideProps<TextFieldProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type ItemInfoProps = React.PropsWithChildren<Partial<ViewProps> & {
-    food?: any;
+export declare type NewListProps = React.PropsWithChildren<Partial<ViewProps> & {
     lst?: any;
-    itemInfo?: React.ReactNode;
+    not?: any;
 } & {
-    overrides?: ItemInfoOverridesProps | undefined | null;
+    overrides?: NewListOverridesProps | undefined | null;
 }>;
-export default function ItemInfo(props: ItemInfoProps): React.ReactElement;
+export default function NewList(props: NewListProps): React.ReactElement;

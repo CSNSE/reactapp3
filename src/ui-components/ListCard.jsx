@@ -8,28 +8,30 @@
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { API } from "aws-amplify";
-import { deleteNote } from "../graphql/mutations";
+import { deleteList } from "../graphql/mutations";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
-export default function FoodCard(props) {
-  const { fc, overrides, ...rest } = props;
-  const buttonThreeNineZeroFiveFiveFiveOnClick = useNavigateAction({
+export default function ListCard(props) {
+  const { lst, overrides, ...rest } = props;
+  const imageOnClick = useNavigateAction({
     type: "url",
-    url: `${"/edit"}${"/"}${fc?.id}`,
+    url: `${"/1edit/"}${lst?.name}`,
   });
-  const buttonThreeNineZeroFiveFiveNineOnMouseUp = useNavigateAction({
+  const buttonThreeNineFiveThreeThreeEightSevenTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: `${"/ediList/"}${lst?.id}`,
   });
-  const buttonThreeNineZeroFiveFiveNineOnMouseDown = async () => {
+  const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseDown = async () => {
     await API.graphql({
-      query: deleteNote.replaceAll("__typename", ""),
+      query: deleteList.replaceAll("__typename", ""),
       variables: {
         input: {
-          id: fc?.id,
+          id: lst?.id,
         },
       },
     });
   };
+  const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseUp =
+    useNavigateAction({ type: "url", url: "/lists" });
   return (
     <Flex
       gap="0"
@@ -41,12 +43,12 @@ export default function FoodCard(props) {
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "FoodCard")}
+      {...getOverrideProps(overrides, "ListCard")}
       {...rest}
     >
       <Image
         width="unset"
-        height="160px"
+        height="460px"
         display="block"
         gap="unset"
         alignItems="unset"
@@ -56,7 +58,10 @@ export default function FoodCard(props) {
         position="relative"
         padding="0px 0px 0px 0px"
         objectFit="cover"
-        src={fc?.image}
+        src={lst?.image}
+        onClick={() => {
+          imageOnClick();
+        }}
         {...getOverrideProps(overrides, "image")}
       ></Image>
       <Flex
@@ -104,7 +109,7 @@ export default function FoodCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={fc?.name}
+            children={lst?.name}
             {...getOverrideProps(overrides, "Pasta")}
           ></Text>
           <Text
@@ -127,8 +132,8 @@ export default function FoodCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={fc?.description}
-            {...getOverrideProps(overrides, "example390553")}
+            children={lst?.description}
+            {...getOverrideProps(overrides, "example39533870")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -149,8 +154,8 @@ export default function FoodCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={fc?.ListName}
-            {...getOverrideProps(overrides, "example390554")}
+            children={lst?.createdAt}
+            {...getOverrideProps(overrides, "example39533871")}
           ></Text>
         </Flex>
       </Flex>
@@ -163,9 +168,9 @@ export default function FoodCard(props) {
         variation="default"
         children="Edit"
         onClick={() => {
-          buttonThreeNineZeroFiveFiveFiveOnClick();
+          buttonThreeNineFiveThreeThreeEightSevenTwoOnClick();
         }}
-        {...getOverrideProps(overrides, "Button390555")}
+        {...getOverrideProps(overrides, "Button39533872")}
       ></Button>
       <Button
         width="unset"
@@ -175,13 +180,13 @@ export default function FoodCard(props) {
         isDisabled={false}
         variation="default"
         children="Delete"
-        onMouseUp={() => {
-          buttonThreeNineZeroFiveFiveNineOnMouseUp();
-        }}
         onMouseDown={() => {
-          buttonThreeNineZeroFiveFiveNineOnMouseDown();
+          buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseDown();
         }}
-        {...getOverrideProps(overrides, "Button390559")}
+        onMouseUp={() => {
+          buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseUp();
+        }}
+        {...getOverrideProps(overrides, "Button39533873")}
       ></Button>
     </Flex>
   );

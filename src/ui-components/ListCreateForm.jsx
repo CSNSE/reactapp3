@@ -9,12 +9,10 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
-import { getNote } from "../graphql/queries";
-import { updateNote } from "../graphql/mutations";
-export default function NoteUpdateForm(props) {
+import { createList } from "../graphql/mutations";
+export default function ListCreateForm(props) {
   const {
-    id: idProp,
-    note: noteModelProp,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,
@@ -27,46 +25,23 @@ export default function NoteUpdateForm(props) {
     name: "",
     description: "",
     image: "",
-    ListName: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [image, setImage] = React.useState(initialValues.image);
-  const [ListName, setListName] = React.useState(initialValues.ListName);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = noteRecord
-      ? { ...initialValues, ...noteRecord }
-      : initialValues;
-    setName(cleanValues.name);
-    setDescription(cleanValues.description);
-    setImage(cleanValues.image);
-    setListName(cleanValues.ListName);
+    setName(initialValues.name);
+    setDescription(initialValues.description);
+    setImage(initialValues.image);
     setErrors({});
   };
-  const [noteRecord, setNoteRecord] = React.useState(noteModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await API.graphql({
-              query: getNote.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getNote
-        : noteModelProp;
-      setNoteRecord(record);
-    };
-    queryData();
-  }, [idProp, noteModelProp]);
-  React.useEffect(resetStateValues, [noteRecord]);
   const validations = {
-    name: [{ type: "Required" }],
+    name: [],
     description: [],
     image: [],
-    ListName: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -95,9 +70,8 @@ export default function NoteUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           name,
-          description: description ?? null,
-          image: image ?? null,
-          ListName: ListName ?? null,
+          description,
+          image,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -128,16 +102,18 @@ export default function NoteUpdateForm(props) {
             }
           });
           await API.graphql({
-            query: updateNote.replaceAll("__typename", ""),
+            query: createList.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: noteRecord.id,
                 ...modelFields,
               },
             },
           });
           if (onSuccess) {
             onSuccess(modelFields);
+          }
+          if (clearOnSuccess) {
+            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -146,12 +122,12 @@ export default function NoteUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "NoteUpdateForm")}
+      {...getOverrideProps(overrides, "ListCreateForm")}
       {...rest}
     >
       <TextField
         label="Name"
-        isRequired={true}
+        isRequired={false}
         isReadOnly={false}
         value={name}
         onChange={(e) => {
@@ -161,7 +137,6 @@ export default function NoteUpdateForm(props) {
               name: value,
               description,
               image,
-              ListName,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -188,7 +163,6 @@ export default function NoteUpdateForm(props) {
               name,
               description: value,
               image,
-              ListName,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -215,7 +189,6 @@ export default function NoteUpdateForm(props) {
               name,
               description,
               image: value,
-              ListName,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -230,46 +203,18 @@ export default function NoteUpdateForm(props) {
         hasError={errors.image?.hasError}
         {...getOverrideProps(overrides, "image")}
       ></TextField>
-      <TextField
-        label="List name"
-        isRequired={false}
-        isReadOnly={false}
-        value={ListName}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name,
-              description,
-              image,
-              ListName: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.ListName ?? value;
-          }
-          if (errors.ListName?.hasError) {
-            runValidationTasks("ListName", value);
-          }
-          setListName(value);
-        }}
-        onBlur={() => runValidationTasks("ListName", ListName)}
-        errorMessage={errors.ListName?.errorMessage}
-        hasError={errors.ListName?.hasError}
-        {...getOverrideProps(overrides, "ListName")}
-      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Reset"
+          children="Clear"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || noteModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -279,10 +224,7 @@ export default function NoteUpdateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={
-              !(idProp || noteModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
+            isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

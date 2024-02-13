@@ -1,6 +1,14 @@
+type List @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  image: String
+}
+
 type Note @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   description: String
   image: String
+  ListName: String
 } 

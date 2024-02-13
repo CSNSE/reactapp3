@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,14 +17,13 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type InfoOverridesProps = {
-    Info?: PrimitiveOverrideProps<ViewProps>;
+export declare type GuideOverridesProps = {
+    Guide?: PrimitiveOverrideProps<ViewProps>;
     "Shopper Planner"?: PrimitiveOverrideProps<TextProps>;
-    Info38514483?: PrimitiveOverrideProps<TextProps>;
-    "This is an app where the user inputs there favorite items from the store. Then the user can save their shopping lists."?: PrimitiveOverrideProps<TextProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
+    Guide39533754?: PrimitiveOverrideProps<TextProps>;
+    "First make a new list, or edit an existing one. Here you can add all the recipes you\u2019ll need for the event."?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type InfoProps = React.PropsWithChildren<Partial<ViewProps> & {
-    overrides?: InfoOverridesProps | undefined | null;
+export declare type GuideProps = React.PropsWithChildren<Partial<ViewProps> & {
+    overrides?: GuideOverridesProps | undefined | null;
 }>;
-export default function Info(props: InfoProps): React.ReactElement;
+export default function Guide(props: GuideProps): React.ReactElement;

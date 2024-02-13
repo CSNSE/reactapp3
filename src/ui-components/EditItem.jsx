@@ -11,14 +11,10 @@ import { Field } from "@aws-amplify/ui-react/internal";
 import { API } from "aws-amplify";
 import { updateNote } from "../graphql/mutations";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
-import { getOverrideProps, useNavigateAction, processFile } from "./utils";
-import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
+import { getOverrideProps, useNavigateAction,processFile} from "./utils";
+import { Button, Text, TextField, View, } from "@aws-amplify/ui-react";
 export default function EditItem(props) {
   const { edt, overrides, ...rest } = props;
-  const [
-    imageName,
-    setImageName,
-  ] = useState("");
   const [
     textFieldThreeNineFourFiveEightSevenValue,
     setTextFieldThreeNineFourFiveEightSevenValue,
@@ -26,6 +22,10 @@ export default function EditItem(props) {
   const [
     textFieldThreeNineFourFiveEightNineValue,
     setTextFieldThreeNineFourFiveEightNineValue,
+  ] = useState("");
+  const [
+    imageName,
+    setImageName,
   ] = useState("");
   const [
     textFieldThreeNineFourFiveEightEightValue,
@@ -40,15 +40,19 @@ export default function EditItem(props) {
           description: textFieldThreeNineFourFiveEightNineValue,
           image: imageName,
           id: edt?.id,
+          
         },
       },
     });
   };
-  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
+  const buttonOnMouseUp = useNavigateAction({
+    type: "url",
+    url: `${"/1edit/"}${edt?.ListName}`,
+  });
   return (
     <View
       width="390px"
-      height="670px"
+      height="600px"
       display="block"
       gap="unset"
       alignItems="unset"
@@ -78,26 +82,7 @@ export default function EditItem(props) {
         }}
         {...getOverrideProps(overrides, "TextField394587")}
       ></TextField>
-      
-      <TextField
-        width="300px"
-        height="unset"
-        label="Description"
-        position="absolute"
-        top="216px"
-        left="43px"
-        placeholder={edt?.description}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineFourFiveEightNineValue}
-        onChange={(event) => {
-          setTextFieldThreeNineFourFiveEightNineValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField394589")}
-      ></TextField>
-<Field
+      <Field
 position="absolute"
 top="300px"
 left="43px"
@@ -120,11 +105,29 @@ isReadOnly={false}
   {...getOverrideProps(overrides, "image")}
 ></StorageManager>
 </Field>
+      <TextField
+        width="300px"
+        height="unset"
+        label="Description"
+        position="absolute"
+        top="216px"
+        left="43px"
+        placeholder={edt?.description}
+        size="default"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        value={textFieldThreeNineFourFiveEightNineValue}
+        onChange={(event) => {
+          setTextFieldThreeNineFourFiveEightNineValue(event.target.value);
+        }}
+        {...getOverrideProps(overrides, "TextField394589")}
+      ></TextField>
       <Button
         width="unset"
         height="unset"
         position="absolute"
-        top="580px"
+        top="520px"
         left="149px"
         backgroundColor="rgba(11,153,255,1)"
         size="default"

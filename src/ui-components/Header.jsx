@@ -12,7 +12,7 @@ export default function Header(props) {
   const { overrides, ...rest } = props;
   const shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: "/lists",
   });
   const buttonThreeNineThreeZeroTwoSixOneOnClick = useNavigateAction({
     type: "url",
@@ -110,7 +110,7 @@ export default function Header(props) {
         size="default"
         isDisabled={false}
         variation="default"
-        children="Info"
+        children="Back"
         onClick={() => {
           buttonThreeNineThreeZeroTwoSixTwoOnClick();
         }}

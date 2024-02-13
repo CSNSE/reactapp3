@@ -6,8 +6,8 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { listNotes } from "../graphql/queries";
-import FoodCard from "./FoodCard";
+import { listLists } from "../graphql/queries";
+import ListCard from "./ListCard";
 import { getOverrideProps } from "./utils";
 import { Auth } from "@aws-amplify/auth";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
@@ -33,8 +33,7 @@ function getKeywordFromUrl() {
 }
 
 // Usage
-const keyword = getKeywordFromUrl();
-console.log(keyword); // "Valetines"
+
 
   React.useEffect(() => {
     nextToken[instanceKey] = "";
@@ -60,7 +59,7 @@ console.log(keyword); // "Valetines"
       setLoading(true);
       const variables = {
         limit: pageSize,
-        filter: { ListName: { contains: keyword } },
+      
       };
       if (newNext) {
         variables["nextToken"] = newNext;
@@ -69,28 +68,28 @@ console.log("while loop count");
 
       const result = (
         await API.graphql({
-          query: listNotes.replaceAll("__typename", ""),
+          query: listLists.replaceAll("__typename", ""),
           variables,
         })
-      ).data.listNotes;
+      ).data.listLists;
       newCache.push(...result.items);
       newNext = result.nextToken;
     const notesFromAPI = result.items
       const user = await Auth.currentAuthenticatedUser();
        await Promise.all(
-        notesFromAPI.map(async (note) => {
-          if (note.image) {
-            const url = await Storage.get(note.image);
-            console.log(note.image + "  " + note.name);
+        notesFromAPI.map(async (list) => {
+          if (list.image) {
+            const url = await Storage.get(list.image);
+            console.log(list.image + "  " + list.name);
             //console.log(user.attributes.email + "  " + note.author);
-            note.image = url;
-            console.log(note.image);
+            list.image = url;
+            console.log(list.image);
           }
-          return note;
+          return list;
         })
         );
     }
-
+  
     const cacheSlice = isPaginated
       ? newCache.slice((page - 1) * pageSize, page * pageSize)
       : newCache;
@@ -110,14 +109,14 @@ console.log("while loop count");
     <div>
       <Collection
         type="list"
-        isSearchable={false}
+        isSearchable={true}
         searchPlaceholder="Search..."
         direction="column"
         justifyContent="left"
         itemsPerPage={pageSize}
         isPaginated={!isApiPagination && isPaginated}
         items={itemsProp || (loading ? new Array(pageSize).fill({}) : items)}
-        {...getOverrideProps(overrides, "FoodCardCollection")}
+        {...getOverrideProps(overrides, "ListCardCollection")}
         {...rest}
       >
         {(item, index) => {
@@ -125,11 +124,11 @@ console.log("while loop count");
             return <Placeholder key={index} size="large" />;
           }
           return (
-            <FoodCard
-              fc={item}
+            <ListCard
+              lst={item}
               key={item.id}
               {...(overrideItems && overrideItems({ item, index }))}
-            ></FoodCard>
+            ></ListCard>
           );
         }}
       </Collection>

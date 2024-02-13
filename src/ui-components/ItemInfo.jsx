@@ -41,6 +41,10 @@ const [
     textFieldThreeNineThreeZeroTwoTwoSixValue,
     setTextFieldThreeNineThreeZeroTwoTwoSixValue,
   ] = useState("");
+  const [
+    textFieldThreeNineNineThreeOneTwoSixNineValue,
+    setTextFieldThreeNineNineThreeOneTwoSixNineValue,
+  ] = useState("");
   const buttonThreeNineThreeZeroOneEightThreeOnClick = async () => {
     await API.graphql({
       query: createNote.replaceAll("__typename", ""),
@@ -49,13 +53,14 @@ const [
           name: textFieldThreeNineThreeZeroTwoTwoFourValue,
           description: textFieldThreeNineThreeZeroTwoTwoFiveValue,
           image: imageName,
+          ListName: textFieldThreeNineNineThreeOneTwoSixNineValue,
         },
       },
     });
   };
   const buttonThreeNineThreeZeroOneEightSevenOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: `${"/1edit/"}${textFieldThreeNineNineThreeOneTwoSixNineValue}`,
   });
   return (
     <View
@@ -72,7 +77,6 @@ const [
       {...getOverrideProps(overrides, "ItemInfo")}
       {...rest}
     >
-
       <Text
         fontFamily="Istok Web"
         fontSize="36px"
@@ -100,7 +104,7 @@ const [
         height="unset"
         label="Item"
         position="absolute"
-        top="197px"
+        top="127px"
         left="45px"
         placeholder="Placeholder"
         size="default"
@@ -118,8 +122,8 @@ const [
         height="unset"
         label="Description"
         position="absolute"
-        top="319px"
-        left="44px"
+        top="228px"
+        left="43px"
         placeholder="Placeholder"
         size="default"
         isDisabled={false}
@@ -137,7 +141,7 @@ const [
         position="absolute"
         top="400px"
         left="43px"
-
+        
 label={"Image"}
 isRequired={false}
 isReadOnly={false}
@@ -191,6 +195,24 @@ isReadOnly={false}
         }}
         {...getOverrideProps(overrides, "Button3930187")}
       ></Button>
+      <TextField
+        width="300px"
+        height="unset"
+        label="Event Name"
+        position="absolute"
+        top="320px"
+        left="43px"
+        placeholder="Placeholder"
+        size="default"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        value={textFieldThreeNineNineThreeOneTwoSixNineValue}
+        onChange={(event) => {
+          setTextFieldThreeNineNineThreeOneTwoSixNineValue(event.target.value);
+        }}
+        {...getOverrideProps(overrides, "TextField39931269")}
+      ></TextField>
     </View>
   );
 }
