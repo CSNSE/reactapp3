@@ -11,6 +11,7 @@ import { API } from "aws-amplify";
 import { deleteNote } from "../graphql/mutations";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function FoodCard(props) {
+  const keyword = getKeywordFromUrl();
   const { fc, overrides, ...rest } = props;
   const buttonThreeNineZeroFiveFiveFiveOnClick = useNavigateAction({
     type: "url",
@@ -18,7 +19,7 @@ export default function FoodCard(props) {
   });
   const buttonThreeNineZeroFiveFiveNineOnMouseUp = useNavigateAction({
     type: "url",
-    url: "/",
+    url: ""+keyword,
   });
   const buttonThreeNineZeroFiveFiveNineOnMouseDown = async () => {
     await API.graphql({
@@ -30,6 +31,15 @@ export default function FoodCard(props) {
       },
     });
   };
+  function getKeywordFromUrl() {
+    const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
+    const parts = pathname; // Split the path by '/'
+    return parts[parts.length - 1]; 
+   
+  }
+
+
+  console.log(keyword);
   return (
     <Flex
       gap="0"
