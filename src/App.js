@@ -15,9 +15,6 @@ class App extends Component {
 
 
 
-   
-
-
     <div className="App"><header className="App-header">
 <Routes>
 <Route exact path='/lists' element={<div><ListHeader/><ListCardCollection/></div>} />

@@ -43,4 +43,4 @@ useEffect(() => {
   );
 }
 
-export default EditNote;
+export default EditNote;  

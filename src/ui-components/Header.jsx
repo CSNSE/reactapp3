@@ -20,8 +20,23 @@ export default function Header(props) {
   });
   const buttonThreeNineThreeZeroTwoSixTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/info",
+    url: "/lists",
   });
+  const buttonThreeNineFiveThreeThreeSixEightThreeOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
+
+  function getKeywordFromUrl() {
+    const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
+    const parts = pathname.split('/'); // Split the path by '/'
+    return parts[parts.length - 1]; // Return the last part
+  }
+  
+  // Usage
+  const keyword = getKeywordFromUrl();
+  console.log(keyword); // "Valetines"
+  
   return (
     <View
       width="390px"
@@ -56,7 +71,7 @@ export default function Header(props) {
         left="-2px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Shopper Planner"
+        children= {keyword}
         onClick={() => {
           shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick();
         }}
@@ -82,6 +97,9 @@ export default function Header(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
+        onClick={() => {
+          buttonThreeNineFiveThreeThreeSixEightThreeOnClick();
+        }}
         {...getOverrideProps(overrides, "Shopper Planner3930260")}
       ></Text>
       <Button

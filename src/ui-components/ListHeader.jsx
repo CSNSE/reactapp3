@@ -20,6 +20,10 @@ export default function ListHeader(props) {
     type: "url",
     url: "/guide",
   });
+  const buttonThreeNineFiveThreeThreeSixEightThreeOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
   return (
     <View
       width="390px"
@@ -54,7 +58,7 @@ export default function ListHeader(props) {
         left="-2px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children="Shopper Planner"
+        children="Planned Events"
         onClick={() => {
           shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick();
         }}
@@ -80,6 +84,9 @@ export default function ListHeader(props) {
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children="Shopper Planner"
+        onClick={() => {
+          buttonThreeNineFiveThreeThreeSixEightThreeOnClick();
+        }}
         {...getOverrideProps(overrides, "Shopper Planner39533680")}
       ></Text>
       <Button

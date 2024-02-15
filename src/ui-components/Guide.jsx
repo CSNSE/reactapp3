@@ -86,7 +86,7 @@ export default function Guide(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="136px"
+        top="170px"
         left="10px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
