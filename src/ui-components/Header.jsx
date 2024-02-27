@@ -71,7 +71,7 @@ export default function Header(props) {
         left="-2px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children= {keyword}
+        children= "Recipe"
         onClick={() => {
           shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick();
         }}
