@@ -1,3 +1,4 @@
+
 /***************************************************************************
  * The contents of this file were generated with Amplify Studio.           *
  * Please refrain from making any modifications to this file.              *
@@ -6,261 +7,295 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useState } from "react";
-import { Field } from "@aws-amplify/ui-react/internal";
+import { useAuth } from "@aws-amplify/ui-react/internal";
+import { useEffect, useState } from "react";
 import { API } from "aws-amplify";
-import { updateNote } from "../graphql/mutations";
+import { Field } from "@aws-amplify/ui-react/internal";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
-import { getOverrideProps, useNavigateAction,processFile} from "./utils";
-import { Button, Text, TextField, View, Grid } from "@aws-amplify/ui-react";
-import { getNote } from "../graphql/queries";
-export default function EditItem(props) {
-
-  const {
-    edt,
-    idProp, //remove id:
-    note: noteModelProp,
-    onSuccess,
-    onError,
-    onSubmit,
-    onValidate,
-    onChange,
-    overrides,
-    ...rest
-  } = props;
-
+import { updateNote } from "../graphql/mutations";
+import { getOverrideProps, useNavigateAction, processFile } from "./utils";
+import {
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  Image,
+  Text,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
+export default function UIEditNote(props) {
+  const { edt, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
   const [
-    textFieldThreeNineFourFiveEightSevenValue,
-    setTextFieldThreeNineFourFiveEightSevenValue,
+    textFieldFourZeroFourSevenTwoFourSixOneValue,
+    setTextFieldFourZeroFourSevenTwoFourSixOneValue,
   ] = useState("");
   const [
-    textFieldThreeNineFourFiveEightNineValue,
-    setTextFieldThreeNineFourFiveEightNineValue,
+    textFieldFourZeroFourSevenTwoFourSixTwoValue,
+    setTextFieldFourZeroFourSevenTwoFourSixTwoValue,
   ] = useState("");
   const [
-    imageName,
+    textFieldFourZeroFourSevenTwoFourSixThreeValue,
+    setTextFieldFourZeroFourSevenTwoFourSixThreeValue,
+  ] = useState("");
+  const [
+    newImage,
     setImageName,
   ] = useState("");
-  const [
-    textFieldThreeNineFourFiveEightEightValue,
-    setTextFieldThreeNineFourFiveEightEightValue,
-  ] = useState("");
-  const buttonOnMouseUp = useNavigateAction({
-    type: "url",
-    url: `${"/1edit/"}${edt?.ListName}`,
-  });
-  const buttonOnMouseDown = async () => {
+  const buttonOnClick = async () => {
+    if(newImage)        //important to check if they updated the image, if not: don't include the field ref
     await API.graphql({
-       query: updateNote.replaceAll("__typename", ""),
-       variables: {
+      query: updateNote.replaceAll("__typename", ""),
+      variables: {
         input: {
-        name: textFieldThreeNineFourFiveEightSevenValue,
-          description: textFieldThreeNineFourFiveEightNineValue,
-           image: imageName,
-           id: edt?.id,
-          
-         },
-       },
-     });
-   };
-
-  //console.log("thing update got it: " + {idProp}); //added
-  const initialValues = {
-    name: "",
-    description: "",
-    image: "",
+          name: textFieldFourZeroFourSevenTwoFourSixOneValue,
+          description: textFieldFourZeroFourSevenTwoFourSixTwoValue,
+          //author: authAttributes["email"],
+          image: newImage,
+          id: edt?.id,
+        },
+      },
+    });
+    else
+    await API.graphql({
+      query: updateNote.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          name: textFieldFourZeroFourSevenTwoFourSixOneValue,
+          description: textFieldFourZeroFourSevenTwoFourSixTwoValue,
+          author: authAttributes["email"],
+          id: edt?.id,
+        },
+      },
+    });
   };
-  const [name, setName] = React.useState(initialValues.name);
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
-  const [image, setImage] = React.useState(initialValues.image);
-  const [errors, setErrors] = React.useState({});
-  const resetStateValues = () => {
-    const cleanValues = noteRecord
-      ? { ...initialValues, ...noteRecord }
-      : initialValues;
-    setName(cleanValues.name);
-    setDescription(cleanValues.description);
-    setImage(cleanValues.image);
-    setErrors({});
-  };
-  const [noteRecord, setNoteRecord] = React.useState(noteModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getNote.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getNote
-        : noteModelProp;
-      setNoteRecord(record);
-    };
-    queryData();
-  }, [idProp, noteModelProp]);
-  React.useEffect(resetStateValues, [noteRecord]);
-  const validations = {
-    name: [{ type: "Required" }],
-    description: [],
-    image: [],
-  };
-  const runValidationTasks = async (
-    fieldName,
-    currentValue,
-    getDisplayValue
-  ) => {
-    const value =
-      currentValue && getDisplayValue
-        ? getDisplayValue(currentValue)
-        : currentValue;
-    let validationResponse = validateField(value, validations[fieldName]);
-    const customValidator = fetchByPath(onValidate, fieldName);
-    if (customValidator) {
-      validationResponse = await customValidator(value, validationResponse);
-    }
-    setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
-    return validationResponse;
-  };
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });  // changed from onMouseUp
+  useEffect(() => {
+    if (
+      textFieldFourZeroFourSevenTwoFourSixOneValue === "" &&
+      edt !== undefined &&
+      edt?.name !== undefined
+    )
+      setTextFieldFourZeroFourSevenTwoFourSixOneValue(edt?.name);
+  }, [edt]);
+  useEffect(() => {
+    if (
+      textFieldFourZeroFourSevenTwoFourSixTwoValue === "" &&
+      edt !== undefined &&
+      edt?.description !== undefined
+    )
+      setTextFieldFourZeroFourSevenTwoFourSixTwoValue(edt?.description);
+  }, [edt]);
+  useEffect(() => {
+    if (
+      textFieldFourZeroFourSevenTwoFourSixThreeValue === "" &&
+      edt !== undefined &&
+      edt?.image !== undefined
+    )
+      setTextFieldFourZeroFourSevenTwoFourSixThreeValue(edt?.filename);
+  }, [edt]);
   return (
-    <Grid
-      as="form"
-      rowGap="15px"
-      columnGap="15px"
-      padding="20px"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        let modelFields = {
-          name,
-          description: description ?? null,
-          image: image ?? null,
-        };
-        const validationResponses = await Promise.all(
-          Object.keys(validations).reduce((promises, fieldName) => {
-            if (Array.isArray(modelFields[fieldName])) {
-              promises.push(
-                ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
-                )
-              );
-              return promises;
-            }
-            promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
-            );
-            return promises;
-          }, [])
-        );
-        if (validationResponses.some((r) => r.hasError)) {
-          return;
-        }
-        if (onSubmit) {
-          modelFields = onSubmit(modelFields);
-        }
-        try {
-          Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value === "") {
-              modelFields[key] = null;
-            }
-          });
-          await client.graphql({
-            query: updateNote.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                id: noteRecord.id,
-                ...modelFields,
-              },
-            },
-          });
-          if (onSuccess) {
-            onSuccess(modelFields);
-          }
-        } catch (err) {
-          if (onError) {
-            const messages = err.errors.map((e) => e.message).join("\n");
-            onError(modelFields, messages);
-          }
-        }
-      }}
-      {...getOverrideProps(overrides, "NoteUpdateForm")}
-      {...rest}
-    >
-    
-    <View
-      width="390px"
-      height="600px"
-      display="block"
-      gap="unset"
-      alignItems="unset"
-      justifyContent="unset"
-      overflow="hidden"
+    <Flex
+      gap="16px"
+      direction="column"
+      width="320px"
+      height="unset"
+      justifyContent="flex-start"
+      alignItems="flex-start"
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "EditItem")}
+      {...getOverrideProps(overrides, "UIEditNote")}
       {...rest}
     >
-      <TextField
-        width="300px"
+      <Flex
+        gap="24px"
+        direction="column"
+        width="unset"
         height="unset"
-        label="Name"
-        position="absolute"
-        top="123px"
-        left="43px"
-        //placeholder={edt?.name}
-        size="default"
-        
-       
-       // value={textFieldThreeNineFourFiveEightSevenValue}
-        //onChange={(event) => {
-       //   setTextFieldThreeNineFourFiveEightSevenValue(event.target.value);
-       //</View> }}
-       // {...getOverrideProps(overrides, "TextField394587")}
-
-
-
-        placeholder="db_note_name"
+        justifyContent="flex-start"
+        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
-    
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        isRequired={true}
-        isReadOnly={false}
-        value={name}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name: value,
-              description,
-              image,
-            };
-            const result = onChange(modelFields);
-            value = result?.name ?? value;
-          }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
-          }
-          setName(value);
-        }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
+        position="relative"
+        padding="24px 24px 24px 24px"
+        {...getOverrideProps(overrides, "Content")}
+      >
+        <Flex
+          gap="48px"
+          direction="row"
+          width="272px"
+          height="22px"
+          justifyContent="space-between"
+          alignItems="center"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "Edit Profile")}
+        >
+          <View
+            width="24px"
+            height="24px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            overflow="hidden"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Icon")}
+          >
+            <Icon
+              width="14px"
+              height="14px"
+              viewBox={{ minX: 0, minY: 0, width: 14, height: 14 }}
+              paths={[
+                {
+                  d: "M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z",
+                  fill: "rgba(13,26,38,1)",
+                  fillRule: "nonzero",
+                },
+              ]}
+              display="block"
+              gap="unset"
+              alignItems="unset"
+              justifyContent="unset"
+              position="absolute"
+              top="20.83%"
+              bottom="20.83%"
+              left="20.83%"
+              right="20.83%"
+              {...getOverrideProps(overrides, "Vector")}
+            ></Icon>
+          </View>
+          <Text
+            fontFamily="Inter"
+            fontSize="16px"
+            fontWeight="700"
+            color="rgba(13,26,38,1)"
+            lineHeight="20px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="31px"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="Edit "
+            {...getOverrideProps(overrides, "Edit")}
+          ></Text>
+          <Text
+            fontFamily="Inter"
+            fontSize="10px"
+            fontWeight="400"
+            color="rgba(48,64,80,1)"
+            lineHeight="24px"
+            textAlign="center"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="178px"
+            height="23px"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children={edt?.id}
+            {...getOverrideProps(overrides, "db id")}
+          ></Text>
+        </Flex>
+        <Flex
+          gap="16px"
+          direction="row"
+          width="272px"
+          height="100px"
+          justifyContent="flex-start"
+          alignItems="center"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "Profile")}
+        >
+          <Image
+            width="unset"
+            height="unset"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            grow="1"
+            shrink="1"
+            basis="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            objectFit="cover"
+            src={edt?.image}
+            {...getOverrideProps(overrides, "image")}
+          ></Image>
+        </Flex>
+        <Flex
+          gap="16px"
+          direction="column"
+          width="unset"
+          height="unset"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          shrink="0"
+          alignSelf="stretch"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "Forms")}
+        >
+          <TextField
+            width="unset"
+            height="unset"
+            label="site name"
+            placeholder="site"
+            shrink="0"
+            alignSelf="stretch"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            value={textFieldFourZeroFourSevenTwoFourSixOneValue}
+            onChange={(event) => {
+              setTextFieldFourZeroFourSevenTwoFourSixOneValue(
+                event.target.value
+              );
+            }}
+            {...getOverrideProps(overrides, "TextField40472461")}
+          ></TextField>
+          <TextField
+            width="unset"
+            height="unset"
+            label="url address"
+            placeholder="url"
+            shrink="0"
+            alignSelf="stretch"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            value={textFieldFourZeroFourSevenTwoFourSixTwoValue}
+            onChange={(event) => {
+              setTextFieldFourZeroFourSevenTwoFourSixTwoValue(
+                event.target.value
+              );
+            }}
+            {...getOverrideProps(overrides, "TextField40472462")}
+          ></TextField>
+ <Field
 
-      ></TextField>
-
-
-
-
-      
-      <Field
-position="absolute"
-top="300px"
-left="43px"
 label={"Image"}
 isRequired={false}
 isReadOnly={false}
@@ -280,66 +315,33 @@ isReadOnly={false}
   {...getOverrideProps(overrides, "image")}
 ></StorageManager>
 </Field>
-      <TextField
-        width="300px"
-        height="unset"
-        label="Description"
-        position="absolute"
-        top="216px"
-        left="43px"
-        placeholder={edt?.description}
-        size="default"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        value={textFieldThreeNineFourFiveEightNineValue}
-        onChange={(event) => {
-          setTextFieldThreeNineFourFiveEightNineValue(event.target.value);
-        }}
-        {...getOverrideProps(overrides, "TextField394589")}
-      ></TextField>
-      <Button
-        width="unset"
-        height="unset"
-        position="absolute"
-        top="520px"
-        left="149px"
-        backgroundColor="rgba(11,153,255,1)"
-        size="default"
-        isDisabled={false}
-        variation="default"
-        children="Finish"
-        onMouseDown={() => {
-          buttonOnMouseDown();
-        }}
-        onMouseUp={() => {
-          buttonOnMouseUp();
-        }}
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
-      <Text
-        fontFamily="Istok Web"
-        fontSize="36px"
-        fontWeight="700"
-        color="rgba(0,0,0,1)"
-        lineHeight="51.8203125px"
-        textAlign="center"
-        display="block"
-        direction="column"
-        justifyContent="unset"
-        width="392px"
-        height="71px"
-        gap="unset"
-        alignItems="unset"
-        position="absolute"
-        top="31px"
-        left="-2px"
-        padding="0px 0px 0px 0px"
-        whiteSpace="pre-wrap"
-        children="Edit Item"
-        {...getOverrideProps(overrides, "Edit Item")}
-      ></Text>
-    </View>
-    </Grid>
+        </Flex>
+        <Divider
+          width="unset"
+          height="1px"
+          shrink="0"
+          alignSelf="stretch"
+          size="small"
+          orientation="horizontal"
+          {...getOverrideProps(overrides, "Divider")}
+        ></Divider>
+        <Button
+          width="unset"
+          height="unset"
+          shrink="0"
+          size="default"
+          isDisabled={false}
+          variation="primary"
+          children="Save"
+          onClick={() => {
+            buttonOnClick();
+          }}
+          onMouseOut={() => {  // changed from onMouseUp
+            buttonOnMouseOut();
+          }}
+          {...getOverrideProps(overrides, "Button")}
+        ></Button>
+      </Flex>
+    </Flex>
   );
 }
