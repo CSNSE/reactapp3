@@ -1,4 +1,3 @@
-
 /***************************************************************************
  * The contents of this file were generated with Amplify Studio.           *
  * Please refrain from making any modifications to this file.              *
@@ -25,7 +24,7 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function UIEditNote(props) {
-  const { edt, overrides, ...rest } = props;
+  const { nx, overrides, ...rest } = props;
   const authAttributes = useAuth().user?.attributes ?? {};
   const [
     textFieldFourZeroFourSevenTwoFourSixOneValue,
@@ -51,9 +50,9 @@ export default function UIEditNote(props) {
         input: {
           name: textFieldFourZeroFourSevenTwoFourSixOneValue,
           description: textFieldFourZeroFourSevenTwoFourSixTwoValue,
-          //author: authAttributes["email"],
+          author: authAttributes["email"],
           image: newImage,
-          id: edt?.id,
+          id: nx?.id,
         },
       },
     });
@@ -65,7 +64,7 @@ export default function UIEditNote(props) {
           name: textFieldFourZeroFourSevenTwoFourSixOneValue,
           description: textFieldFourZeroFourSevenTwoFourSixTwoValue,
           author: authAttributes["email"],
-          id: edt?.id,
+          id: nx?.id,
         },
       },
     });
@@ -74,27 +73,27 @@ export default function UIEditNote(props) {
   useEffect(() => {
     if (
       textFieldFourZeroFourSevenTwoFourSixOneValue === "" &&
-      edt !== undefined &&
-      edt?.name !== undefined
+      nx !== undefined &&
+      nx?.name !== undefined
     )
-      setTextFieldFourZeroFourSevenTwoFourSixOneValue(edt?.name);
-  }, [edt]);
+      setTextFieldFourZeroFourSevenTwoFourSixOneValue(nx?.name);
+  }, [nx]);
   useEffect(() => {
     if (
       textFieldFourZeroFourSevenTwoFourSixTwoValue === "" &&
-      edt !== undefined &&
-      edt?.description !== undefined
+      nx !== undefined &&
+      nx?.description !== undefined
     )
-      setTextFieldFourZeroFourSevenTwoFourSixTwoValue(edt?.description);
-  }, [edt]);
+      setTextFieldFourZeroFourSevenTwoFourSixTwoValue(nx?.description);
+  }, [nx]);
   useEffect(() => {
     if (
       textFieldFourZeroFourSevenTwoFourSixThreeValue === "" &&
-      edt !== undefined &&
-      edt?.image !== undefined
+      nx !== undefined &&
+      nx?.image !== undefined
     )
-      setTextFieldFourZeroFourSevenTwoFourSixThreeValue(edt?.filename);
-  }, [edt]);
+      setTextFieldFourZeroFourSevenTwoFourSixThreeValue(nx?.filename);
+  }, [nx]);
   return (
     <Flex
       gap="16px"
@@ -209,7 +208,7 @@ export default function UIEditNote(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={edt?.id}
+            children={nx?.id}
             {...getOverrideProps(overrides, "db id")}
           ></Text>
         </Flex>
@@ -239,7 +238,7 @@ export default function UIEditNote(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             objectFit="cover"
-            src={edt?.image}
+            src={nx?.image}
             {...getOverrideProps(overrides, "image")}
           ></Image>
         </Flex>
