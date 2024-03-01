@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
 import { getList } from "../graphql/queries";
@@ -28,7 +34,7 @@ export default function ListUpdateForm(props) {
     description: "",
     image: "",
     author: "",
-    view: "",
+    view: false,
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
@@ -69,7 +75,7 @@ export default function ListUpdateForm(props) {
     name: [],
     description: [],
     image: [],
-    author: [],
+    author: [{ type: "Email" }],
     view: [],
   };
   const runValidationTasks = async (
@@ -266,13 +272,13 @@ export default function ListUpdateForm(props) {
         hasError={errors.author?.hasError}
         {...getOverrideProps(overrides, "author")}
       ></TextField>
-      <TextField
+      <SwitchField
         label="View"
-        isRequired={false}
-        isReadOnly={false}
-        value={view}
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={view}
         onChange={(e) => {
-          let { value } = e.target;
+          let value = e.target.checked;
           if (onChange) {
             const modelFields = {
               name,
@@ -293,7 +299,7 @@ export default function ListUpdateForm(props) {
         errorMessage={errors.view?.errorMessage}
         hasError={errors.view?.hasError}
         {...getOverrideProps(overrides, "view")}
-      ></TextField>
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

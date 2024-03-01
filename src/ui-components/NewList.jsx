@@ -17,7 +17,7 @@ import { useAuth } from "@aws-amplify/ui-react/internal";
 import { useState } from "react";
 import { API } from "aws-amplify";
 import { createList } from "../graphql/mutations";
-import { getOverrideProps } from "./utils";
+
 import {
   Button,
   SwitchField,
@@ -49,7 +49,7 @@ export default function NewList(props) {
           name: textFieldFourZeroThreeThreeThreeZeroFourValue,
           description: textFieldFourZeroThreeThreeThreeZeroFiveValue,
           image: textFieldFourZeroThreeThreeThreeZeroSixValue,
-          author: authAttributes["email"],
+          //author: authAttributes["email"],
           view: switchFieldIsChecked,
         },
       },
@@ -169,7 +169,7 @@ isReadOnly={false}
         onMouseDown={() => {
           buttonOnMouseDown();
         }}
-        
+
 onMouseUp={() => {
           buttonOnMouseUp();
         }}
