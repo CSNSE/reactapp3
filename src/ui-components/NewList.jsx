@@ -169,6 +169,7 @@ isReadOnly={false}
         onMouseDown={() => {
           buttonOnMouseDown();
         }}
+        
 onMouseUp={() => {
           buttonOnMouseUp();
         }}
