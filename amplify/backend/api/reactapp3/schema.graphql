@@ -3,6 +3,8 @@ type List @model @auth(rules: [{allow: public}]) {
   name: String
   description: String
   image: String
+  author: String
+  view: String
 }
 
 type Note @model @auth(rules: [{allow: public}]) {
@@ -11,4 +13,5 @@ type Note @model @auth(rules: [{allow: public}]) {
   description: String
   image: String
   ListName: String
-} 
+}
+ 

@@ -13,42 +13,49 @@ import { Field } from "@aws-amplify/ui-react/internal";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { getOverrideProps, useNavigateAction, processFile } from "./utils";
 import * as React from "react";
-import { Auth } from "@aws-amplify/auth";
+import { useAuth } from "@aws-amplify/ui-react/internal";
 import { useState } from "react";
 import { API } from "aws-amplify";
 import { createList } from "../graphql/mutations";
-import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "./utils";
+import {
+  Button,
+  SwitchField,
+  Text,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
 export default function NewList(props) {
-  const { lst, overrides, ...rest } = props;
+  const { lst, not, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
   const [
-    imageName,
-    setImageName,
+    textFieldFourZeroThreeThreeThreeZeroFourValue,
+    setTextFieldFourZeroThreeThreeThreeZeroFourValue,
   ] = useState("");
   const [
-    textFieldThreeNineFiveThreeThreeSevenNineZeroValue,
-    setTextFieldThreeNineFiveThreeThreeSevenNineZeroValue,
+    textFieldFourZeroThreeThreeThreeZeroFiveValue,
+    setTextFieldFourZeroThreeThreeThreeZeroFiveValue,
   ] = useState("");
   const [
-    textFieldThreeNineFiveThreeThreeSevenNineOneValue,
-    setTextFieldThreeNineFiveThreeThreeSevenNineOneValue,
+    textFieldFourZeroThreeThreeThreeZeroSixValue,
+    setTextFieldFourZeroThreeThreeThreeZeroSixValue,
   ] = useState("");
-  const [
-    textFieldThreeNineFiveThreeThreeSevenNineTwoValue,
-    setTextFieldThreeNineFiveThreeThreeSevenNineTwoValue,
-  ] = useState("");
+  const [switchFieldIsChecked, setSwitchFieldIsChecked] = useState(true);
   const buttonOnMouseDown = async () => {
     await API.graphql({
       query: createList.replaceAll("__typename", ""),
       variables: {
         input: {
-          name: textFieldThreeNineFiveThreeThreeSevenNineZeroValue,
-          description: textFieldThreeNineFiveThreeThreeSevenNineOneValue,
-          image: imageName,
+          name: textFieldFourZeroThreeThreeThreeZeroFourValue,
+          description: textFieldFourZeroThreeThreeThreeZeroFiveValue,
+          image: textFieldFourZeroThreeThreeThreeZeroSixValue,
+          author: authAttributes["email"],
+          view: switchFieldIsChecked,
         },
       },
     });
   };
-  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/lists" });
+const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/lists" });
   return (
     <View
       width="390px"
@@ -98,13 +105,11 @@ export default function NewList(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeNineFiveThreeThreeSevenNineZeroValue}
+        value={textFieldFourZeroThreeThreeThreeZeroFourValue}
         onChange={(event) => {
-          setTextFieldThreeNineFiveThreeThreeSevenNineZeroValue(
-            event.target.value
-          );
+          setTextFieldFourZeroThreeThreeThreeZeroFourValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField39533790")}
+        {...getOverrideProps(overrides, "TextField4033304")}
       ></TextField>
       <TextField
         width="300px"
@@ -118,13 +123,11 @@ export default function NewList(props) {
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        value={textFieldThreeNineFiveThreeThreeSevenNineOneValue}
+        value={textFieldFourZeroThreeThreeThreeZeroFiveValue}
         onChange={(event) => {
-          setTextFieldThreeNineFiveThreeThreeSevenNineOneValue(
-            event.target.value
-          );
+          setTextFieldFourZeroThreeThreeThreeZeroFiveValue(event.target.value);
         }}
-        {...getOverrideProps(overrides, "TextField39533791")}
+        {...getOverrideProps(overrides, "TextField4033305")}
       ></TextField>
       <Field
         
@@ -166,11 +169,25 @@ isReadOnly={false}
         onMouseDown={() => {
           buttonOnMouseDown();
         }}
-        onMouseUp={() => {
+onMouseUp={() => {
           buttonOnMouseUp();
         }}
         {...getOverrideProps(overrides, "Button")}
       ></Button>
+      <SwitchField
+        width="unset"
+        height="unset"
+        label="Public"
+        position="absolute"
+        top="535px"
+        left="143px"
+        size="default"
+        isDisabled={false}
+        labelPosition="start"
+        isChecked={switchFieldIsChecked}
+        onChange={() => setSwitchFieldIsChecked(!switchFieldIsChecked)}
+        {...getOverrideProps(overrides, "SwitchField")}
+      ></SwitchField>
     </View>
   );
 }

@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, SwitchFieldProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,19 +17,13 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type NewListOverridesProps = {
-    NewList?: PrimitiveOverrideProps<ViewProps>;
-    "Create Event"?: PrimitiveOverrideProps<TextProps>;
-    TextField4033304?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField4033305?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField4033306?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type PrivateErrorOverridesProps = {
+    PrivateError?: PrimitiveOverrideProps<ViewProps>;
+    "Shopper Planner"?: PrimitiveOverrideProps<TextProps>;
+    "The event you have tried to view is private, if this is unexpected please verify your account."?: PrimitiveOverrideProps<TextProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
-    SwitchField?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
-export declare type NewListProps = React.PropsWithChildren<Partial<ViewProps> & {
-    lst?: any;
-    not?: any;
-} & {
-    overrides?: NewListOverridesProps | undefined | null;
+export declare type PrivateErrorProps = React.PropsWithChildren<Partial<ViewProps> & {
+    overrides?: PrivateErrorOverridesProps | undefined | null;
 }>;
-export default function NewList(props: NewListProps): React.ReactElement;
+export default function PrivateError(props: PrivateErrorProps): React.ReactElement;

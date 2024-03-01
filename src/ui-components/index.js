@@ -21,5 +21,6 @@ export { default as ListUpdateForm } from "./ListUpdateForm";
 export { default as NewList } from "./NewList";
 export { default as NoteCreateForm } from "./NoteCreateForm";
 export { default as NoteUpdateForm } from "./NoteUpdateForm";
+export { default as PrivateError } from "./PrivateError";
 export { default as WelcomePage } from "./WelcomePage";
 export { default as studioTheme } from "./studioTheme";
