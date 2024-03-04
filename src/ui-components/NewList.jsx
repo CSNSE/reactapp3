@@ -49,7 +49,7 @@ export default function NewList(props) {
           name: textFieldFourZeroThreeThreeThreeZeroFourValue,
           description: textFieldFourZeroThreeThreeThreeZeroFiveValue,
           image: textFieldFourZeroThreeThreeThreeZeroSixValue,
-          //author: authAttributes["email"],
+          author: authAttributes["email"],
           view: switchFieldIsChecked,
         },
       },
