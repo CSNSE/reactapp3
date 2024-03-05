@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -26,14 +26,14 @@ export declare type ListUpdateFormInputValues = {
     description?: string;
     image?: string;
     author?: string;
-    view?: boolean;
+    view?: string;
 };
 export declare type ListUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
     author?: ValidationFunction<string>;
-    view?: ValidationFunction<boolean>;
+    view?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ListUpdateFormOverridesProps = {
@@ -42,7 +42,7 @@ export declare type ListUpdateFormOverridesProps = {
     description?: PrimitiveOverrideProps<TextFieldProps>;
     image?: PrimitiveOverrideProps<TextFieldProps>;
     author?: PrimitiveOverrideProps<TextFieldProps>;
-    view?: PrimitiveOverrideProps<SwitchFieldProps>;
+    view?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ListUpdateFormProps = React.PropsWithChildren<{
     overrides?: ListUpdateFormOverridesProps | undefined | null;

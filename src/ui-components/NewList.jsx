@@ -37,6 +37,10 @@ export default function NewList(props) {
     setTextFieldFourZeroThreeThreeThreeZeroFiveValue,
   ] = useState("");
   const [
+    imageName,
+    setImageName,
+  ] = useState("");
+  const [
     textFieldFourZeroThreeThreeThreeZeroSixValue,
     setTextFieldFourZeroThreeThreeThreeZeroSixValue,
   ] = useState("");

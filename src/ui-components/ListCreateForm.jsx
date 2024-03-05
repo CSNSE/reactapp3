@@ -6,13 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SwitchField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
 import { createList } from "../graphql/mutations";
@@ -32,7 +26,7 @@ export default function ListCreateForm(props) {
     description: "",
     image: "",
     author: "",
-    view: false,
+    view: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
@@ -253,13 +247,13 @@ export default function ListCreateForm(props) {
         hasError={errors.author?.hasError}
         {...getOverrideProps(overrides, "author")}
       ></TextField>
-      <SwitchField
+      <TextField
         label="View"
-        defaultChecked={false}
-        isDisabled={false}
-        isChecked={view}
+        isRequired={false}
+        isReadOnly={false}
+        value={view}
         onChange={(e) => {
-          let value = e.target.checked;
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
               name,
@@ -280,7 +274,7 @@ export default function ListCreateForm(props) {
         errorMessage={errors.view?.errorMessage}
         hasError={errors.view?.hasError}
         {...getOverrideProps(overrides, "view")}
-      ></SwitchField>
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

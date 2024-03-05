@@ -10,11 +10,12 @@ import { listLists } from "../graphql/queries";
 import ListCard from "./ListCard";
 import { getOverrideProps } from "./utils";
 import { Auth } from "@aws-amplify/auth";
+import { useAuth } from "@aws-amplify/ui-react/internal";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { API,Storage } from "aws-amplify";
 const nextToken = {};
 const apiCache = {};
-export default function FoodCardCollection(props) {
+export default function ListCardCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
   const [hasMorePages, setHasMorePages] = React.useState(true);
@@ -25,11 +26,12 @@ export default function FoodCardCollection(props) {
   const [maxViewed, setMaxViewed] = React.useState(1);
   const pageSize = 5;
   const isPaginated = true;
-  
+  const authAttributes = useAuth().user?.attributes ?? {};
   // Function to extract the last part of the URL
 function getKeywordFromUrl() {
   const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
   const parts = pathname.split('/'); // Split the path by '/'
+  
   return parts[parts.length - 1]; // Return the last part
 }
 
@@ -60,9 +62,11 @@ function getKeywordFromUrl() {
     while ((newCache.length < cacheUntil || !isPaginated) && newNext != null) {
       setLoading(true);
       const variables = {
+        
         limit: pageSize,
-        filter: { view: { contains: "true" } },
+        filter: {author: { contains: ""}}||{view: { contains: "true" } },
       };
+      console.log();
       if (newNext) {
         variables["nextToken"] = newNext;
       }
