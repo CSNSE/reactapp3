@@ -59,7 +59,7 @@ function getKeywordFromUrl() {
       setLoading(true);
       const variables = {
         limit: pageSize,
-      
+        filter: { view: { contains: True } },
       };
       if (newNext) {
         variables["nextToken"] = newNext;
