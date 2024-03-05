@@ -4,7 +4,7 @@ type List @model @auth(rules: [{allow: public}]) {
   description: String
   image: String
   author: AWSEmail
-  view: Boolean
+  view: String
 }
 
 type Note @model @auth(rules: [{allow: public}]) {

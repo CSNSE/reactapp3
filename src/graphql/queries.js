@@ -8,6 +8,8 @@ export const getList = /* GraphQL */ `
       name
       description
       image
+      author
+      view
       createdAt
       updatedAt
       __typename
@@ -26,6 +28,8 @@ export const listLists = /* GraphQL */ `
         name
         description
         image
+        author
+        view
         createdAt
         updatedAt
         __typename

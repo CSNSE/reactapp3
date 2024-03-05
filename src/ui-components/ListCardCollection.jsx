@@ -25,6 +25,7 @@ export default function FoodCardCollection(props) {
   const [maxViewed, setMaxViewed] = React.useState(1);
   const pageSize = 5;
   const isPaginated = true;
+  
   // Function to extract the last part of the URL
 function getKeywordFromUrl() {
   const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
@@ -51,6 +52,7 @@ function getKeywordFromUrl() {
   const jumpToPage = (pageNum) => {
     setPageIndex(pageNum);
   };
+  const filteredItems = items.filter(item => item.view === true);
   const loadPage = async (page) => {
     const cacheUntil = page * pageSize + 1;
     const newCache = apiCache[instanceKey].slice();
@@ -59,7 +61,7 @@ function getKeywordFromUrl() {
       setLoading(true);
       const variables = {
         limit: pageSize,
-        filter: { view: { contains: True } },
+        filter: { view: { contains: "true" } },
       };
       if (newNext) {
         variables["nextToken"] = newNext;

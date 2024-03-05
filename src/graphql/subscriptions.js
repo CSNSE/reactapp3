@@ -8,6 +8,8 @@ export const onCreateList = /* GraphQL */ `
       name
       description
       image
+      author
+      view
       createdAt
       updatedAt
       __typename
@@ -21,6 +23,8 @@ export const onUpdateList = /* GraphQL */ `
       name
       description
       image
+      author
+      view
       createdAt
       updatedAt
       __typename
@@ -34,6 +38,8 @@ export const onDeleteList = /* GraphQL */ `
       name
       description
       image
+      author
+      view
       createdAt
       updatedAt
       __typename
