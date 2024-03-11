@@ -6,6 +6,8 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { Auth } from "@aws-amplify/auth";
+import { useAuth } from "@aws-amplify/ui-react/internal";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Text, View } from "@aws-amplify/ui-react";
 export default function ListHeader(props) {

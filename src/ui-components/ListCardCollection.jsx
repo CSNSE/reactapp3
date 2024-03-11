@@ -15,6 +15,7 @@ import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { API,Storage } from "aws-amplify";
 const nextToken = {};
 const apiCache = {};
+
 export default function ListCardCollection(props) {
   const { items: itemsProp, overrideItems, overrides, ...rest } = props;
   const [pageIndex, setPageIndex] = React.useState(1);
@@ -34,6 +35,7 @@ function getKeywordFromUrl() {
   
   return parts[parts.length - 1]; // Return the last part
 }
+const au = authAttributes["email"]
 
 // Usage
 
@@ -64,7 +66,7 @@ function getKeywordFromUrl() {
       const variables = {
         
         limit: pageSize,
-        filter: {author: { contains: ""}}||{view: { contains: "true" } },
+        filter: {author: { contains: au }}||{view: { contains: "true" } },
       };
       console.log();
       if (newNext) {
