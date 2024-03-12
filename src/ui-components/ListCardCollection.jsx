@@ -28,14 +28,17 @@ export default function ListCardCollection(props) {
   const pageSize = 5;
   const isPaginated = true;
   const authAttributes = useAuth().user?.attributes ?? {};
+ // const au = ""
   // Function to extract the last part of the URL
-  const au = authAttributes["email"]
-function getKeywordFromUrl() {
+ // window.onload = function exampleFunction(){
+   //  au = authAttributes["email"]
+   // }
+  
+
   const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
   const parts = pathname.split('/'); // Split the path by '/'
+  const aut=parts[parts.length - 1];
   
-  return parts[parts.length - 1]; // Return the last part
-}
 
 // Usage
 
@@ -62,17 +65,19 @@ function getKeywordFromUrl() {
     const newCache = apiCache[instanceKey].slice();
     let newNext = nextToken[instanceKey];
     while ((newCache.length < cacheUntil || !isPaginated) && newNext != null) {
+     const au = authAttributes["email"];
       setLoading(true);
       const variables = {
         
         limit: pageSize,
-        filter: {author: { contains: au }}||{view: { contains: "true" } },
+        
+        filter: {author: { contains: aut }}||{view: { contains: "true" } },
       };
       console.log(au);
       if (newNext) {
         variables["nextToken"] = newNext;
       }
-console.log("while loop count");
+console.log(authAttributes);
 
 
       const result = (
