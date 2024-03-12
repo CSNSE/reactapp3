@@ -29,13 +29,13 @@ export default function ListCardCollection(props) {
   const isPaginated = true;
   const authAttributes = useAuth().user?.attributes ?? {};
   // Function to extract the last part of the URL
+  const au = authAttributes["email"]
 function getKeywordFromUrl() {
   const pathname = window.location.pathname; // e.g., "/1edit/Valetines"
   const parts = pathname.split('/'); // Split the path by '/'
   
   return parts[parts.length - 1]; // Return the last part
 }
-const au = authAttributes["email"]
 
 // Usage
 
@@ -68,11 +68,12 @@ const au = authAttributes["email"]
         limit: pageSize,
         filter: {author: { contains: au }}||{view: { contains: "true" } },
       };
-      console.log();
+      console.log(au);
       if (newNext) {
         variables["nextToken"] = newNext;
       }
 console.log("while loop count");
+
 
       const result = (
         await API.graphql({
@@ -88,7 +89,7 @@ console.log("while loop count");
         notesFromAPI.map(async (list) => {
           if (list.image) {
             const url = await Storage.get(list.image);
-            console.log(list.image + "  " + list.name);
+           
             //console.log(user.attributes.email + "  " + note.author);
             list.image = url;
             console.log(list.image);
