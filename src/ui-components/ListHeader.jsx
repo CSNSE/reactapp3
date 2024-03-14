@@ -11,6 +11,7 @@ import { useAuth } from "@aws-amplify/ui-react/internal";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Text, View } from "@aws-amplify/ui-react";
 export default function ListHeader(props) {
+  const authAttributes = useAuth().user?.attributes ?? {};
   const { overrides, ...rest } = props;
   const shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick =
     useNavigateAction({ type: "url", url: "/lists" });
@@ -24,7 +25,7 @@ export default function ListHeader(props) {
   });
   const buttonThreeNineFiveThreeThreeSixEightThreeOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: `${"/lists/"}${authAttributes["email"]}`,
   });
   return (
     <View
