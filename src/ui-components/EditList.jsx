@@ -10,10 +10,14 @@ import { useState } from "react";
 import { API } from "aws-amplify";
 import { Field } from "@aws-amplify/ui-react/internal";
 import { updateList } from "../graphql/mutations";
+import { Auth } from "@aws-amplify/auth";
+import { useAuth } from "@aws-amplify/ui-react/internal";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { getOverrideProps, useNavigateAction,processFile} from "./utils";
 import { Button, Text, TextField, View } from "@aws-amplify/ui-react";
 export default function EditList(props) {
+  const authAttributes = useAuth().user?.attributes ?? {};
+
   const { list, overrides, ...rest } = props;
   const [
     imageName,
@@ -45,7 +49,7 @@ export default function EditList(props) {
       },
    });
   };
-  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/lists" });
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
   return (
     <View
       width="390px"

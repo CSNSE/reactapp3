@@ -9,8 +9,12 @@ import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { API } from "aws-amplify";
 import { deleteList } from "../graphql/mutations";
+import { Auth } from "@aws-amplify/auth";
+import { useAuth } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function ListCard(props) {
+  const authAttributes = useAuth().user?.attributes ?? {};
+
   const { lst, overrides, ...rest } = props;
   const imageOnClick = useNavigateAction({
     type: "url",
@@ -31,7 +35,7 @@ export default function ListCard(props) {
     });
   };
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseUp =
-    useNavigateAction({ type: "url", url: "/lists" });
+    useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
   return (
     <Flex
       gap="0"

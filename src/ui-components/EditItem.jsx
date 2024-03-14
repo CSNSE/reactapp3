@@ -43,17 +43,19 @@ export default function UIEditNote(props) {
     newImage,
     setImageName,
   ] = useState("");
-  const buttonOnClick = async () => {
+  const buttonOnMouseDown = async () => {
     if(newImage)        //important to check if they updated the image, if not: don't include the field ref
     await API.graphql({
       query: updateNote.replaceAll("__typename", ""),
       variables: {
         input: {
           name: textFieldFourZeroFourSevenTwoFourSixOneValue,
+          ListName:edt?.ListName,
           description: textFieldFourZeroFourSevenTwoFourSixTwoValue,
           //author: authAttributes["email"],
           image: newImage,
           id: edt?.id,
+          //ListName:edt?.ListName
         },
       },
     });
@@ -63,14 +65,15 @@ export default function UIEditNote(props) {
       variables: {
         input: {
           name: textFieldFourZeroFourSevenTwoFourSixOneValue,
+          ListName:edt?.ListName,
           description: textFieldFourZeroFourSevenTwoFourSixTwoValue,
-          author: authAttributes["email"],
+          //author: authAttributes["email"],
           id: edt?.id,
         },
       },
     });
   };
-  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });  // changed from onMouseUp
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: `${"/edit/"}${edt?.id}` });  // changed from onMouseUp
   useEffect(() => {
     if (
       textFieldFourZeroFourSevenTwoFourSixOneValue === "" &&
@@ -333,11 +336,11 @@ isReadOnly={false}
           isDisabled={false}
           variation="primary"
           children="Save"
-          onClick={() => {
-            buttonOnClick();
+          onMouseDown={() => {
+            buttonOnMouseDown();
           }}
-          onMouseOut={() => {  // changed from onMouseUp
-            buttonOnMouseOut();
+          onMouseUp={() => {  // changed from onMouseUp
+            buttonOnMouseUp();
           }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>

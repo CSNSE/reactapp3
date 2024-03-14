@@ -12,6 +12,7 @@
 import { Field } from "@aws-amplify/ui-react/internal";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { getOverrideProps, useNavigateAction, processFile } from "./utils";
+import { Auth } from "@aws-amplify/auth";
 import * as React from "react";
 import { useAuth } from "@aws-amplify/ui-react/internal";
 import { useState } from "react";
@@ -59,7 +60,7 @@ export default function NewList(props) {
       },
     });
   };
-const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/lists" });
+const buttonOnMouseUp = useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
   return (
     <View
       width="390px"

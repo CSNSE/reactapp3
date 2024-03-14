@@ -25,6 +25,7 @@ class App extends Component {
 <Route exact path='/info' element={<div><Info/></div>} />
 <Route exact path='/edit/:cid' element={<EditNote/>} />
 <Route exact path='/ediList/:cid' element={<EditLists/>} />
+<Route exact path='lists/newList' element={<div><ListHeader/><NewList/></div>} />
 <Route exact path='/newList' element={<div><ListHeader/><NewList/></div>} />
 {/* <Route exact path='/1edit/:cid' element={<NoteUpdateForm/>} /> */}
 <Route exact path='/1new' element={<div><Header/><NoteCreateForm/></div>} />

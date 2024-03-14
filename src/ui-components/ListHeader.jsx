@@ -14,7 +14,7 @@ export default function ListHeader(props) {
   const authAttributes = useAuth().user?.attributes ?? {};
   const { overrides, ...rest } = props;
   const shopperPlannerThreeNineFiveThreeThreeSixSevenNineOnClick =
-    useNavigateAction({ type: "url", url: "/lists" });
+    useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
   const buttonThreeNineFiveThreeThreeSixEightOneOnClick = useNavigateAction({
     type: "url",
     url: "newList",
@@ -25,7 +25,7 @@ export default function ListHeader(props) {
   });
   const buttonThreeNineFiveThreeThreeSixEightThreeOnClick = useNavigateAction({
     type: "url",
-    url: `${"/lists/"}${authAttributes["email"]}`,
+    url: "/",
   });
   return (
     <View
