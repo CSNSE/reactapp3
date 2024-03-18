@@ -25,6 +25,7 @@ export default function ListCard(props) {
     url: `${"/ediList/"}${lst?.id}`,
   });
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseDown = async () => {
+      
     await API.graphql({
       query: deleteList.replaceAll("__typename", ""),
       variables: {
@@ -35,7 +36,8 @@ export default function ListCard(props) {
     });
   };
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseUp =
-    useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
+  useNavigateAction({ type: "url", url: `${"/1edit/"}${lst.name}` });
+   // useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
   return (
     <Flex
       gap="0"

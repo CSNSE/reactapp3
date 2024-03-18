@@ -6,15 +6,10 @@ import EditNote from './EditNote';
 import {Routes, Route} from 'react-router-dom'
 import EditLists from './EditLists';
 
-
-
 class App extends Component {
 
   render() {
   return (
-
-
-
     <div className="App"><header className="App-header">
 <Routes>
 <Route exact path='/lists/:cid' element={<div><ListHeader/><ListCardCollection/></div>} />
