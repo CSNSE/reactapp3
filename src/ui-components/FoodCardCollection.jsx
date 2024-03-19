@@ -32,6 +32,7 @@ function getKeywordFromUrl() {
   return parts[parts.length - 1]; // Return the last part
 }
 
+
 // Usage
 const keyword = getKeywordFromUrl();
 console.log(keyword); // "Valetines"

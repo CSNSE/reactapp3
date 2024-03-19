@@ -7,12 +7,16 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
+import { useAuth } from "@aws-amplify/ui-react/internal";
+
 import { Button, Text, View } from "@aws-amplify/ui-react";
 export default function Header(props) {
+  const authAttributes = useAuth().user?.attributes ?? {};
+
   const { overrides, ...rest } = props;
   const shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick = useNavigateAction({
     type: "url",
-    url: "/lists",
+    url: `${"/lists/"}${authAttributes["email"]}`,
   });
   const buttonThreeNineThreeZeroTwoSixOneOnClick = useNavigateAction({
     type: "url",
@@ -20,7 +24,7 @@ export default function Header(props) {
   });
   const buttonThreeNineThreeZeroTwoSixTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/lists",
+    url: `${"/lists/"}${authAttributes["email"]}`,
   });
   const buttonThreeNineFiveThreeThreeSixEightThreeOnClick = useNavigateAction({
     type: "url",
@@ -71,7 +75,8 @@ export default function Header(props) {
         left="-2px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
-        children= {keyword}
+        children="Recipe"
+       // children= {keyword}
         onClick={() => {
           shopperPlannerThreeNineThreeZeroTwoFiveNineOnClick();
         }}

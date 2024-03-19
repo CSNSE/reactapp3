@@ -11,6 +11,8 @@ export const createList = /* GraphQL */ `
       name
       description
       image
+      author
+      view
       createdAt
       updatedAt
       __typename
@@ -27,6 +29,8 @@ export const updateList = /* GraphQL */ `
       name
       description
       image
+      author
+      view
       createdAt
       updatedAt
       __typename
@@ -43,6 +47,8 @@ export const deleteList = /* GraphQL */ `
       name
       description
       image
+      author
+      view
       createdAt
       updatedAt
       __typename

@@ -7,18 +7,26 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
+import { Auth } from "@aws-amplify/auth";
+import { useAuth } from "@aws-amplify/ui-react/internal";
 import { Button, Text, View } from "@aws-amplify/ui-react";
 export default function WelcomePage(props) {
+  const authAttributes = useAuth().user?.attributes ?? {};
   const { overrides, ...rest } = props;
+
   const buttonThreeNineFiveThreeThreeSixFourTwoOnClick = useNavigateAction({
     type: "url",
-    url: "/lists",
+    url: `${"/lists/"}${authAttributes["email"]}`,
+    
   });
   const buttonThreeNineFiveThreeThreeSixNineNineOnClick = useNavigateAction({
     type: "url",
     url: "/info",
+   
   });
+  
   return (
+    
     <View
       width="390px"
       height="713px"
@@ -67,6 +75,8 @@ export default function WelcomePage(props) {
         variation="default"
         children="Begin"
         onClick={() => {
+          const au=authAttributes["email"];
+          
           buttonThreeNineFiveThreeThreeSixFourTwoOnClick();
         }}
         {...getOverrideProps(overrides, "Button39533642")}
@@ -113,5 +123,8 @@ export default function WelcomePage(props) {
         )}
       ></Text>
     </View>
+    
   );
+  
 }
+

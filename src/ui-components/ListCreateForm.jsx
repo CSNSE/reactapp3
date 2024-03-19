@@ -25,23 +25,31 @@ export default function ListCreateForm(props) {
     name: "",
     description: "",
     image: "",
+    author: "",
+    view: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [image, setImage] = React.useState(initialValues.image);
+  const [author, setAuthor] = React.useState(initialValues.author);
+  const [view, setView] = React.useState(initialValues.view);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setDescription(initialValues.description);
     setImage(initialValues.image);
+    setAuthor(initialValues.author);
+    setView(initialValues.view);
     setErrors({});
   };
   const validations = {
     name: [],
     description: [],
     image: [],
+    author: [{ type: "Email" }],
+    view: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -72,6 +80,8 @@ export default function ListCreateForm(props) {
           name,
           description,
           image,
+          author,
+          view,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -137,6 +147,8 @@ export default function ListCreateForm(props) {
               name: value,
               description,
               image,
+              author,
+              view,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -163,6 +175,8 @@ export default function ListCreateForm(props) {
               name,
               description: value,
               image,
+              author,
+              view,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -189,6 +203,8 @@ export default function ListCreateForm(props) {
               name,
               description,
               image: value,
+              author,
+              view,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -202,6 +218,62 @@ export default function ListCreateForm(props) {
         errorMessage={errors.image?.errorMessage}
         hasError={errors.image?.hasError}
         {...getOverrideProps(overrides, "image")}
+      ></TextField>
+      <TextField
+        label="Author"
+        isRequired={false}
+        isReadOnly={false}
+        value={author}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              image,
+              author: value,
+              view,
+            };
+            const result = onChange(modelFields);
+            value = result?.author ?? value;
+          }
+          if (errors.author?.hasError) {
+            runValidationTasks("author", value);
+          }
+          setAuthor(value);
+        }}
+        onBlur={() => runValidationTasks("author", author)}
+        errorMessage={errors.author?.errorMessage}
+        hasError={errors.author?.hasError}
+        {...getOverrideProps(overrides, "author")}
+      ></TextField>
+      <TextField
+        label="View"
+        isRequired={false}
+        isReadOnly={false}
+        value={view}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              image,
+              author,
+              view: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.view ?? value;
+          }
+          if (errors.view?.hasError) {
+            runValidationTasks("view", value);
+          }
+          setView(value);
+        }}
+        onBlur={() => runValidationTasks("view", view)}
+        errorMessage={errors.view?.errorMessage}
+        hasError={errors.view?.hasError}
+        {...getOverrideProps(overrides, "view")}
       ></TextField>
       <Flex
         justifyContent="space-between"

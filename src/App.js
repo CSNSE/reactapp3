@@ -6,18 +6,13 @@ import EditNote from './EditNote';
 import {Routes, Route} from 'react-router-dom'
 import EditLists from './EditLists';
 
-
-
 class App extends Component {
 
   render() {
   return (
-
-
-
     <div className="App"><header className="App-header">
 <Routes>
-<Route exact path='/lists' element={<div><ListHeader/><ListCardCollection/></div>} />
+<Route exact path='/lists/:cid' element={<div><ListHeader/><ListCardCollection/></div>} />
 <Route exact path='/guide' element={<div><ListHeader/><Guide/></div>} />
 <Route exact path='/1edit/:cid' element={<div><Header/><FoodCardCollection/></div>} />
 <Route exact path='/' element={<div><WelcomePage/></div>} />
@@ -25,6 +20,7 @@ class App extends Component {
 <Route exact path='/info' element={<div><Info/></div>} />
 <Route exact path='/edit/:cid' element={<EditNote/>} />
 <Route exact path='/ediList/:cid' element={<EditLists/>} />
+<Route exact path='lists/newList' element={<div><ListHeader/><NewList/></div>} />
 <Route exact path='/newList' element={<div><ListHeader/><NewList/></div>} />
 {/* <Route exact path='/1edit/:cid' element={<NoteUpdateForm/>} /> */}
 <Route exact path='/1new' element={<div><Header/><NoteCreateForm/></div>} />

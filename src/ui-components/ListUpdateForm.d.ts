@@ -25,11 +25,15 @@ export declare type ListUpdateFormInputValues = {
     name?: string;
     description?: string;
     image?: string;
+    author?: string;
+    view?: string;
 };
 export declare type ListUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
+    author?: ValidationFunction<string>;
+    view?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type ListUpdateFormOverridesProps = {
@@ -37,6 +41,8 @@ export declare type ListUpdateFormOverridesProps = {
     name?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
     image?: PrimitiveOverrideProps<TextFieldProps>;
+    author?: PrimitiveOverrideProps<TextFieldProps>;
+    view?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type ListUpdateFormProps = React.PropsWithChildren<{
     overrides?: ListUpdateFormOverridesProps | undefined | null;
