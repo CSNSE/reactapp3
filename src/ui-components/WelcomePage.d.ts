@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -23,6 +23,7 @@ export declare type WelcomePageOverridesProps = {
     Button39533642?: PrimitiveOverrideProps<ButtonProps>;
     Button39533699?: PrimitiveOverrideProps<ButtonProps>;
     "Welcome to Shopper Planner. You can press info to learn about us and begin making your list when your ready."?: PrimitiveOverrideProps<TextProps>;
+    "\uD83D\uDD12Icon"?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type WelcomePageProps = React.PropsWithChildren<Partial<ViewProps> & {
     overrides?: WelcomePageOverridesProps | undefined | null;
