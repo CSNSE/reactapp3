@@ -30,6 +30,8 @@ export declare type ListCardOverridesProps = {
 } & EscapeHatchProps;
 export declare type ListCardProps = React.PropsWithChildren<Partial<FlexProps> & {
     lst?: any;
+    cardArea?: React.ReactNode;
+    com?: any;
 } & {
     overrides?: ListCardOverridesProps | undefined | null;
 }>;
