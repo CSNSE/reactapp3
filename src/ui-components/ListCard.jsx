@@ -8,6 +8,7 @@
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { API } from "aws-amplify";
+import CommentCardCollection from "./CommentCardCollection";
 import { deleteList } from "../graphql/mutations";
 import { Auth } from "@aws-amplify/auth";
 import { useAuth } from "@aws-amplify/ui-react/internal";
@@ -15,7 +16,10 @@ import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function ListCard(props) {
   const authAttributes = useAuth().user?.attributes ?? {};
 
-  const { lst, overrides, ...rest } = props;
+
+ 
+ 
+  const { lst, cardArea, com, textGroup4043365, overrides, ...rest } = props;
   const imageOnClick = useNavigateAction({
     type: "url",
     url: `${"/1edit/"}${lst?.name}`,
@@ -25,7 +29,6 @@ export default function ListCard(props) {
     url: `${"/ediList/"}${lst?.id}`,
   });
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseDown = async () => {
-      
     await API.graphql({
       query: deleteList.replaceAll("__typename", ""),
       variables: {
@@ -36,7 +39,7 @@ export default function ListCard(props) {
     });
   };
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseUp =
-  useNavigateAction({ type: "url", url: `${"/1edit/"}${lst.name}` });
+    useNavigateAction({ type: "url", url: `${"/1edit/"}${lst.name}` });
    // useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
   return (
     <Flex
@@ -94,7 +97,7 @@ export default function ListCard(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "Text Group")}
+          {...getOverrideProps(overrides, "Text Group39533868")}
         >
           <Text
             fontFamily="Inter"
@@ -164,6 +167,20 @@ export default function ListCard(props) {
             {...getOverrideProps(overrides, "example39533871")}
           ></Text>
         </Flex>
+        <Flex
+          gap="8px"
+          direction="column"
+          width="unset"
+          height="unset"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          shrink="0"
+          alignSelf="stretch"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          children={lst.id}
+          {...getOverrideProps(overrides, "Text Group4043365")}
+        ></Flex>
       </Flex>
       <Button
         width="unset"
