@@ -21,10 +21,12 @@ export declare type ListCardOverridesProps = {
     ListCard?: PrimitiveOverrideProps<FlexProps>;
     image?: PrimitiveOverrideProps<ImageProps>;
     "Card Area"?: PrimitiveOverrideProps<FlexProps>;
-    "Text Group"?: PrimitiveOverrideProps<FlexProps>;
+    "Text Group39533868"?: PrimitiveOverrideProps<FlexProps>;
     Pasta?: PrimitiveOverrideProps<TextProps>;
     example39533870?: PrimitiveOverrideProps<TextProps>;
     example39533871?: PrimitiveOverrideProps<TextProps>;
+    "Text Group4043365"?: PrimitiveOverrideProps<FlexProps>;
+    example4043368?: PrimitiveOverrideProps<TextProps>;
     Button39533872?: PrimitiveOverrideProps<ButtonProps>;
     Button39533873?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
@@ -32,6 +34,7 @@ export declare type ListCardProps = React.PropsWithChildren<Partial<FlexProps> &
     lst?: any;
     cardArea?: React.ReactNode;
     com?: any;
+    textGroup4043365?: React.ReactNode;
 } & {
     overrides?: ListCardOverridesProps | undefined | null;
 }>;
