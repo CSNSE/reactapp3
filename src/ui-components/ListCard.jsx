@@ -8,9 +8,18 @@
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { API } from "aws-amplify";
+import CommentCardCollection from "./CommentCardCollection";
+import CommentCard from "./CommentCard";
 import { deleteList } from "../graphql/mutations";
+import { Auth } from "@aws-amplify/auth";
+import { useAuth } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Image, Text } from "@aws-amplify/ui-react";
 export default function ListCard(props) {
+  const authAttributes = useAuth().user?.attributes ?? {};
+
+
+ 
+ 
   const { lst, cardArea, com, textGroup4043365, overrides, ...rest } = props;
   const imageOnClick = useNavigateAction({
     type: "url",
@@ -31,7 +40,8 @@ export default function ListCard(props) {
     });
   };
   const buttonThreeNineFiveThreeThreeEightSevenThreeOnMouseUp =
-    useNavigateAction({ type: "url", url: "/lists" });
+    useNavigateAction({ type: "url", url: `${"/1edit/"}${lst.name}` });
+   // useNavigateAction({ type: "url", url: `${"/lists/"}${authAttributes["email"]}` });
   return (
     <Flex
       gap="0"
@@ -154,7 +164,7 @@ export default function ListCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="example"
+            children={lst?.createdAt}
             {...getOverrideProps(overrides, "example39533871")}
           ></Text>
         </Flex>
@@ -169,7 +179,7 @@ export default function ListCard(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          children="CommentCardCollection"
+          children={lst.id}
           {...getOverrideProps(overrides, "Text Group4043365")}
         ></Flex>
       </Flex>
