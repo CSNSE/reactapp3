@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { listComments } from "../graphql/queries";
+import { Comments } from "../graphql/queries";
 import CommentCard from "./CommentCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";

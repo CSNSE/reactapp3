@@ -2,6 +2,7 @@ type Comment @model @auth(rules: [{allow: public}]) {
   id: ID!
   author: AWSEmail
   words: String
+  listID: ID! @index(name: "byList")
 }
 
 type List @model @auth(rules: [{allow: public}]) {
@@ -11,6 +12,7 @@ type List @model @auth(rules: [{allow: public}]) {
   image: String
   author: AWSEmail
   view: String
+  Comments: [Comment] @hasMany(indexName: "byList", fields: ["id"])
 }
 
 type Note @model @auth(rules: [{allow: public}]) {

@@ -4,6 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as CommentCard } from "./CommentCard";
+export { default as CommentCardCollection } from "./CommentCardCollection";
 export { default as EditItem } from "./EditItem";
 export { default as EditList } from "./EditList";
 export { default as FoodCard } from "./FoodCard";
