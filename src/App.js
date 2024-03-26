@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {WelcomePage, Header,ListHeader, NewList, EditList, FoodCardCollection, Info, ItemInfo, EditItem, NoteCreateForm, ListCardCollection, Guide} from "./ui-components";
+import {WelcomePage, Header,ListHeader, NewList, EditList, FoodCardCollection, Info, ItemInfo, EditItem, NoteCreateForm, ListCardCollection, Guide,CommentCard, CommentCardCollection} from "./ui-components";
 import EditNote from './EditNote';
+import ListCardCollectionC from '/ListCardCollectionC';
 import {Routes, Route} from 'react-router-dom'
 import EditLists from './EditLists';
 
@@ -18,7 +19,7 @@ class App extends Component {
 <Route exact path='/' element={<div><WelcomePage/></div>} />
 <Route exact path='/new' element={<div><Header/><ItemInfo/></div>} />
 <Route exact path='/info' element={<div><Info/></div>} />
-<Route exact path='/test' element={<div><ListCardCollection0/></div>} />
+<Route exact path='/test' element={<div><ListCardCollectionC/></div>} />
 <Route exact path='/edit/:cid' element={<EditNote/>} />
 <Route exact path='/ediList/:cid' element={<EditLists/>} />
 <Route exact path='lists/newList' element={<div><ListHeader/><NewList/></div>} />
@@ -29,6 +30,7 @@ class App extends Component {
 
 </Routes>
 </header></div>
+
 
 
 
