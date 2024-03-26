@@ -173,7 +173,7 @@ export default function ListCard(props) {
           alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          children="CommentCardCollection"
+          children= {CommentCardCollection}
           {...getOverrideProps(overrides, CommentCardCollection)}
         ></Flex>
       </Flex>

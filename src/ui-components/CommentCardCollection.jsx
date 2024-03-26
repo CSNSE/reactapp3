@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Comments } from "../graphql/queries";
+import { LComments } from "../graphql/queries";
 import CommentCard from "./CommentCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
@@ -54,10 +54,10 @@ export default function CommentCardCollection(props) {
       }
       const result = (
         await API.graphql({
-          query: listComments.replaceAll("__typename", ""),
+          query: LComments.replaceAll("__typename", ""),
           variables,
         })
-      ).data.listComments;
+      ).data.LComments;
       newCache.push(...result.items);
       newNext = result.nextToken;
     }

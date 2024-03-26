@@ -1,4 +1,4 @@
-type Comment @model @auth(rules: [{allow: public}]) {
+type LComment @model @auth(rules: [{allow: public}]) {
   id: ID!
   author: AWSEmail
   words: String
